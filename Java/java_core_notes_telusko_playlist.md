@@ -62,17 +62,35 @@ Important characteristics:
 - **Portable:** bytecode can run on compatible JVM implementations on different operating systems.
 - **Garbage-collected:** the JVM automatically reclaims memory occupied by objects that are no longer reachable, although programmers still need to close resources such as files and network connections.
 
+```java
+class Main {
+    public static void main(String[] args) {
+        System.out.println("Java: statically typed, OOP, JVM bytecode, portable, garbage-collected.");
+        System.out.println("JVM version: " + System.getProperty("java.version"));
+    }
+}
+```
+
 ## 1.2 JDK, JRE, and JVM
 
 These terms describe different parts of the Java runtime and development setup.
 
-| Term | Full name | Purpose |
-|---|---|---|
-| **JVM** | Java Virtual Machine | Loads and executes Java bytecode. |
+| Term    | Full name                | Purpose                                                                                                                                                         |
+| ------- | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **JVM** | Java Virtual Machine     | Loads and executes Java bytecode.                                                                                                                               |
 | **JRE** | Java Runtime Environment | Conceptually, a runtime containing the JVM and libraries needed to run Java applications. Modern JDK distributions do not always ship a separate JRE installer. |
-| **JDK** | Java Development Kit | Tools for developing Java applications, including the compiler (`javac`), launcher (`java`), and runtime components. |
+| **JDK** | Java Development Kit     | Tools for developing Java applications, including the compiler (`javac`), launcher (`java`), and runtime components.                                            |
 
 **Remember:** to develop Java, install a JDK. The JVM alone is not a Java compiler.
+
+```java
+class Main {
+    public static void main(String[] args) {
+        System.out.println("JDK = compiler + tools + runtime; JVM = runs .class bytecode.");
+        System.out.println("After install, run: java -version and javac -version");
+    }
+}
+```
 
 ## 1.3 How Java code runs
 
@@ -102,6 +120,15 @@ javac -version
 
 Both commands should report an installed Java version. If `java` works but `javac` is not found, you may have only a runtime or your JDK's `bin` directory may not be on `PATH`. IDEs such as IntelliJ IDEA, Eclipse, or VS Code can help edit and run code, but they still need an installed and correctly configured JDK.
 
+```java
+class Main {
+    public static void main(String[] args) {
+        System.out.println("Flow: write .java -> javac -> .class -> java launcher -> JVM");
+        System.out.println("Launch with: java Main   (not java Main.class)");
+    }
+}
+```
+
 ## 1.4 Bytecode and portability
 
 - **Source code:** human-readable Java code in `.java` files.
@@ -109,6 +136,15 @@ Both commands should report an installed Java version. If `java` works but `java
 - **Machine code:** processor-specific instructions executed directly by a CPU.
 
 Java portability is often summarized as “write once, run anywhere,” but this depends on a compatible JVM, available libraries, and avoiding platform-specific assumptions.
+
+```java
+class Main {
+    public static void main(String[] args) {
+        System.out.println("Source (.java) -> bytecode (.class) -> JVM on any OS");
+        System.out.println("JIT may compile hot bytecode to native machine code.");
+    }
+}
+```
 
 ---
 
@@ -145,9 +181,13 @@ For a `public` top-level class named `Main`, the source file is conventionally n
 ## 2.2 `print`, `println`, and `printf`
 
 ```java
-System.out.print("Hello ");
-System.out.println("world");
-System.out.printf("Age: %d, score: %.2f%n", 26, 91.456);
+class Main {
+    public static void main(String[] args) {
+        System.out.print("Hello ");
+        System.out.println("world");
+        System.out.printf("Age: %d, score: %.2f%n", 26, 91.456);
+    }
+}
 ```
 
 - `print` writes without automatically adding a newline.
@@ -157,15 +197,14 @@ System.out.printf("Age: %d, score: %.2f%n", 26, 91.456);
 ## 2.3 Comments
 
 ```java
-// One-line comment
-
-/*
-   Multi-line comment
-*/
-
-/**
- * Documentation comment used by Javadoc.
- */
+class Main {
+    public static void main(String[] args) {
+        // One-line comment
+        /* Multi-line comment */
+        /** Javadoc-style comment (not processed here) */
+        System.out.println("Comments document code; they are not executed.");
+    }
+}
 ```
 
 Comments document code; they are not executed as program statements.
@@ -179,8 +218,13 @@ Comments document code; they are not executed as program statements.
 A **variable** is a named storage location or named reference used by a program to hold a value.
 
 ```java
-int age = 26;
-String city = "Parbhani";
+class Main {
+    public static void main(String[] args) {
+        int age = 26;
+        String city = "Parbhani";
+        System.out.println(age + " in " + city);
+    }
+}
 ```
 
 In `int age = 26;`:
@@ -196,16 +240,16 @@ Declare a local variable before using it. Local variables do not automatically r
 
 Java has eight primitive types.
 
-| Type | Typical size | Use / example |
-|---|---:|---|
-| `byte` | 8 bits | Small signed integer, `byte level = 10;` |
-| `short` | 16 bits | Small signed integer, `short year = 2026;` |
-| `int` | 32 bits | Common integer type, `int count = 120;` |
-| `long` | 64 bits | Large integer, `long population = 8_000_000_000L;` |
-| `float` | 32 bits | Single-precision decimal, `float rate = 2.5F;` |
-| `double` | 64 bits | Default floating-point type, `double price = 99.95;` |
-| `char` | 16-bit UTF-16 code unit | `char grade = 'A';` |
-| `boolean` | JVM-dependent storage representation | Logical `true` or `false`, `boolean active = true;` |
+| Type      |                         Typical size | Use / example                                        |
+| --------- | -----------------------------------: | ---------------------------------------------------- |
+| `byte`    |                               8 bits | Small signed integer, `byte level = 10;`             |
+| `short`   |                              16 bits | Small signed integer, `short year = 2026;`           |
+| `int`     |                              32 bits | Common integer type, `int count = 120;`              |
+| `long`    |                              64 bits | Large integer, `long population = 8_000_000_000L;`   |
+| `float`   |                              32 bits | Single-precision decimal, `float rate = 2.5F;`       |
+| `double`  |                              64 bits | Default floating-point type, `double price = 99.95;` |
+| `char`    |              16-bit UTF-16 code unit | `char grade = 'A';`                                  |
+| `boolean` | JVM-dependent storage representation | Logical `true` or `false`, `boolean active = true;`  |
 
 A Java `char` stores one UTF-16 code unit, not necessarily one complete user-perceived Unicode character. A `String` should usually be used for text.
 
@@ -214,17 +258,22 @@ A Java `char` stores one UTF-16 code unit, not necessarily one complete user-per
 A **literal** is a value written directly in source code. Java has several literal forms.
 
 ```java
-int decimal = 26;         // decimal integer literal
-int binary = 0b11010;     // binary, prefix 0b or 0B
-int hex = 0x1A;           // hexadecimal, prefix 0x or 0X
-int octal = 032;          // octal, leading 0 (avoid unless intended)
-long big = 26L;
-double rate = 1.25;
-float ratio = 1.25F;
-char letter = 'J';
-String text = "Java";
-boolean ready = true;
-String missing = null;   // null applies to reference types, not primitives
+class Main {
+    public static void main(String[] args) {
+        int decimal = 26;
+        int binary = 0b11010;
+        int hex = 0x1A;
+        long big = 26L;
+        double rate = 1.25;
+        float ratio = 1.25F;
+        char letter = 'J';
+        String text = "Java";
+        boolean ready = true;
+        String missing = null;
+        System.out.println(decimal + " " + binary + " " + hex + " " + big);
+        System.out.println(text + " ready=" + ready + " missing=" + missing);
+    }
+}
 ```
 
 Notes:
@@ -239,13 +288,6 @@ Notes:
 
 ### Integer and decimal literal tips
 
-```java
-int million = 1_000_000;       // underscores improve readability
-long distance = 9_000_000_000L; // L marks a long literal
-float temperature = 36.5F;      // F marks a float literal
-double amount = 36.5;            // double is the default decimal type
-```
-
 Underscores may separate digits for readability but cannot be placed arbitrarily, such as immediately beside a decimal point.
 
 ## 3.4 Reference types
@@ -253,9 +295,18 @@ Underscores may separate digits for readability but cannot be placed arbitrarily
 Reference types include classes, arrays, interfaces, and enums. A reference variable refers to an object or can hold `null`.
 
 ```java
-String name = "Sawata";
-int[] numbers = {10, 20, 30};
-Computer computer = new Computer(); // assumes Computer is a declared class
+class Computer {
+    String brand = "Demo";
+}
+
+class Main {
+    public static void main(String[] args) {
+        String name = "Sawata";
+        int[] numbers = {10, 20, 30};
+        Computer computer = new Computer();
+        System.out.println(name + " " + numbers[1] + " " + computer.brand);
+    }
+}
 ```
 
 The primitive `int` variable stores an integer value. A reference variable such as `computer` holds a reference to an object, not the complete object itself.
@@ -266,13 +317,19 @@ Fields receive default values when an object or class is initialized. Typical de
 
 ```java
 class Example {
-    int count;       // defaults to 0
-    boolean enabled; // defaults to false
-    String name;     // defaults to null
+    int count;
+    boolean enabled;
+    String name;
 
-    void demo() {
-        int local;
-        // System.out.println(local); // compile-time error: not initialized
+    void showDefaults() {
+        System.out.println("field defaults: count=" + count + ", enabled=" + enabled + ", name=" + name);
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        new Example().showDefaults();
+        System.out.println("Local variables must be assigned before use.");
     }
 }
 ```
@@ -282,16 +339,17 @@ class Example {
 A local variable or field declared with `final` can be assigned only once.
 
 ```java
-final double PI = 3.141592653589793;
+class Main {
+    public static void main(String[] args) {
+        final double PI = 3.141592653589793;
+        final java.util.List<String> names = new java.util.ArrayList<>();
+        names.add("Asha");
+        System.out.println("PI=" + PI + ", names=" + names);
+    }
+}
 ```
 
 For a `final` reference, the reference cannot be reassigned, but the referenced object may still be mutable:
-
-```java
-final java.util.List<String> names = new java.util.ArrayList<>();
-names.add("Asha"); // valid
-// names = new java.util.ArrayList<>(); // invalid reassignment
-```
 
 ## 3.7 Variable naming conventions
 
@@ -307,8 +365,15 @@ Names must follow Java identifier rules and cannot be reserved keywords such as 
 Since Java 10, `var` can infer the type of a local variable from its initializer:
 
 ```java
-var message = "Hello"; // inferred as String
-var total = 100;        // inferred as int
+class Main {
+    public static void main(String[] args) {
+        var message = "Hello";
+        var total = 100;
+        var list = new java.util.ArrayList<String>();
+        list.add(message);
+        System.out.println(message + " " + total + " " + list);
+    }
+}
 ```
 
 `var` is not dynamic typing. The inferred type remains fixed at compile time. It cannot be used for fields, method parameters, or a method's return type, and a local declared with `var` needs an initializer. See [Section 25](#25-modern-java-features-var-records-sealed-classes).
@@ -324,9 +389,13 @@ var total = 100;        // inferred as int
 A widening primitive conversion moves to a type that can represent a broader range. It is commonly performed automatically.
 
 ```java
-int count = 42;
-double value = count; // int -> double
-System.out.println(value); // 42.0
+class Main {
+    public static void main(String[] args) {
+        int count = 42;
+        double value = count;
+        System.out.println(value);
+    }
+}
 ```
 
 Common numeric widening path:
@@ -340,41 +409,48 @@ Common numeric widening path:
 A narrowing conversion may lose information and usually requires an explicit cast.
 
 ```java
-double price = 99.99;
-int whole = (int) price;
-System.out.println(whole); // 99, fractional part is discarded
+class Main {
+    public static void main(String[] args) {
+        double price = 99.99;
+        int whole = (int) price;
+        int result = (int) 8.9;
+        int number = 130;
+        byte small = (byte) number;
+        System.out.println("whole=" + whole + " result=" + result + " small=" + small);
+    }
+}
 ```
 
 Casting floating-point values to an integer type truncates toward zero. It does not round to the nearest integer.
 
-```java
-int result = (int) 8.9; // 8
-```
-
 Narrowing an integer to a smaller type can overflow or wrap according to the target type's bit representation:
-
-```java
-int number = 130;
-byte small = (byte) number; // value is not 130 because byte cannot represent it
-```
 
 ## 4.3 Numeric promotion
 
 Small integral types are generally promoted to `int` during arithmetic operations.
 
 ```java
-byte a = 10;
-byte b = 20;
-// byte c = a + b; // compile-time error: result of a + b is int
-byte c = (byte) (a + b);
+class Main {
+    public static void main(String[] args) {
+        byte a = 10;
+        byte b = 20;
+        byte c = (byte) (a + b);
+        System.out.println("a+b as byte (cast): " + c);
+    }
+}
 ```
 
 ## 4.4 String and numeric conversions
 
 ```java
-int value = Integer.parseInt("123");
-double decimal = Double.parseDouble("12.75");
-String text = String.valueOf(123);
+class Main {
+    public static void main(String[] args) {
+        int value = Integer.parseInt("123");
+        double decimal = Double.parseDouble("12.75");
+        String text = String.valueOf(123);
+        System.out.println(value + " " + decimal + " " + text);
+    }
+}
 ```
 
 `Integer.parseInt("abc")` throws `NumberFormatException`. Conversions from a number to a string can use `String.valueOf(...)` or concatenation, but explicit methods make intent clearer.
@@ -387,20 +463,26 @@ An **operator** performs an operation on one or more operands.
 
 ## 5.1 Arithmetic operators
 
-| Operator | Meaning | Example |
-|---|---|---|
-| `+` | Addition; also string concatenation | `5 + 2`, `"Hi " + name` |
-| `-` | Subtraction | `5 - 2` |
-| `*` | Multiplication | `5 * 2` |
-| `/` | Division | `5 / 2` gives `2` when both operands are integers |
-| `%` | Remainder | `5 % 2` gives `1` |
+| Operator | Meaning                             | Example                                           |
+| -------- | ----------------------------------- | ------------------------------------------------- |
+| `+`      | Addition; also string concatenation | `5 + 2`, `"Hi " + name`                           |
+| `-`      | Subtraction                         | `5 - 2`                                           |
+| `*`      | Multiplication                      | `5 * 2`                                           |
+| `/`      | Division                            | `5 / 2` gives `2` when both operands are integers |
+| `%`      | Remainder                           | `5 % 2` gives `1`                                 |
 
 Integer division discards the fractional part. Use a floating-point operand when a decimal result is required:
 
 ```java
-System.out.println(5 / 2);       // 2
-System.out.println(5 / 2.0);     // 2.5
-System.out.println((double) 5 / 2); // 2.5
+class Main {
+    public static void main(String[] args) {
+        System.out.println(5 / 2);
+        System.out.println(5 / 2.0);
+        System.out.println((double) 5 / 2);
+        System.out.println(5 % 2);
+        System.out.println("Hi " + "Java");
+    }
+}
 ```
 
 ## 5.2 Increment and decrement
@@ -410,9 +492,14 @@ System.out.println((double) 5 / 2); // 2.5
 - `x--` and `--x` work analogously.
 
 ```java
-int x = 5;
-int a = x++; // a = 5, x = 6
-int b = ++x; // x = 7, b = 7
+class Main {
+    public static void main(String[] args) {
+        int x = 5;
+        int a = x++;
+        int b = ++x;
+        System.out.println("a=" + a + " b=" + b + " x=" + x);
+    }
+}
 ```
 
 Prefer simple statements over complicated expressions mixing increments. Such expressions are harder to read and debug.
@@ -420,12 +507,17 @@ Prefer simple statements over complicated expressions mixing increments. Such ex
 ## 5.3 Assignment operators
 
 ```java
-int total = 10;
-total += 5; // equivalent in value to total = total + 5
-total -= 2;
-total *= 3;
-total /= 2;
-total %= 4;
+class Main {
+    public static void main(String[] args) {
+        int total = 10;
+        total += 5;
+        total -= 2;
+        total *= 3;
+        total /= 2;
+        total %= 4;
+        System.out.println("total=" + total);
+    }
+}
 ```
 
 There are also bitwise compound assignments such as `&=`, `|=`, `^=`, `<<=`, `>>=`, and `>>>=`.
@@ -437,8 +529,12 @@ Relational operators evaluate to a `boolean`:
 `==`, `!=`, `<`, `>`, `<=`, `>=`
 
 ```java
-int age = 26;
-System.out.println(age >= 18); // true
+class Main {
+    public static void main(String[] args) {
+        int age = 26;
+        System.out.println(age >= 18);
+    }
+}
 ```
 
 For primitive values, `==` compares values. For object references, `==` tests whether both references point to the same object. To compare the content of many objects such as strings, use their appropriate equality method, for example `equals`.
@@ -452,21 +548,24 @@ For primitive values, `==` compares values. For object references, `==` tests wh
 - `^`: boolean XOR or integral bitwise XOR.
 
 ```java
-int age = 20;
-boolean hasId = true;
-if (age >= 18 && hasId) {
-    System.out.println("Allowed");
+class Main {
+    public static void main(String[] args) {
+        int age = 20;
+        boolean hasId = true;
+        if (age >= 18 && hasId) {
+            System.out.println("Allowed");
+        }
+        String name = null;
+        if (name != null && name.length() > 0) {
+            System.out.println(name);
+        } else {
+            System.out.println("Skipped null name safely");
+        }
+    }
 }
 ```
 
 Short-circuiting is useful for null checks:
-
-```java
-String name = null;
-if (name != null && name.length() > 0) {
-    System.out.println(name);
-}
-```
 
 The right side is not evaluated when `name != null` is false, so this avoids a `NullPointerException` in this example.
 
@@ -489,7 +588,13 @@ These are useful in low-level code, flags, masks, and performance-sensitive algo
 Java has precedence rules, but use parentheses when an expression could be unclear:
 
 ```java
-int result = (a + b) * c;
+class Main {
+    public static void main(String[] args) {
+        int a = 2, b = 3, c = 4;
+        int result = (a + b) * c;
+        System.out.println("(a+b)*c = " + result);
+    }
+}
 ```
 
 Parentheses make intent explicit and reduce mistakes during maintenance.
@@ -503,11 +608,15 @@ Parentheses make intent explicit and reduce mistakes during maintenance.
 Use `if` when a block should run only if a boolean condition is true.
 
 ```java
-int age = 20;
-if (age >= 18) {
-    System.out.println("Adult");
-} else {
-    System.out.println("Minor");
+class Main {
+    public static void main(String[] args) {
+        int age = 20;
+        if (age >= 18) {
+            System.out.println("Adult");
+        } else {
+            System.out.println("Minor");
+        }
+    }
 }
 ```
 
@@ -518,15 +627,14 @@ The condition must be a `boolean`. Java does not treat integers such as `0` and 
 Use an `else if` chain for mutually exclusive branches:
 
 ```java
-int marks = 78;
-if (marks >= 90) {
-    System.out.println("A");
-} else if (marks >= 75) {
-    System.out.println("B");
-} else if (marks >= 60) {
-    System.out.println("C");
-} else {
-    System.out.println("Needs improvement");
+class Main {
+    public static void main(String[] args) {
+        int marks = 78;
+        if (marks >= 90) System.out.println("A");
+        else if (marks >= 75) System.out.println("B");
+        else if (marks >= 60) System.out.println("C");
+        else System.out.println("Needs improvement");
+    }
 }
 ```
 
@@ -537,8 +645,13 @@ Conditions are tested from top to bottom. Put more specific or higher-threshold 
 The conditional operator `condition ? valueIfTrue : valueIfFalse` is a compact expression that returns one of two values.
 
 ```java
-int age = 20;
-String category = age >= 18 ? "Adult" : "Minor";
+class Main {
+    public static void main(String[] args) {
+        int age = 20;
+        String category = age >= 18 ? "Adult" : "Minor";
+        System.out.println(category);
+    }
+}
 ```
 
 Use it for simple value selection. Deeply nested ternaries are harder to read and usually belong in `if` statements instead.
@@ -548,19 +661,16 @@ Use it for simple value selection. Deeply nested ternaries are harder to read an
 A `switch` selects a branch based on a selector value. Depending on the Java version and selector type, common selector types include integral types such as `int`, `char`, enum types, and `String`.
 
 ```java
-int day = 2;
-switch (day) {
-    case 1:
-        System.out.println("Monday");
-        break;
-    case 2:
-        System.out.println("Tuesday");
-        break;
-    case 3:
-        System.out.println("Wednesday");
-        break;
-    default:
-        System.out.println("Other day");
+class Main {
+    public static void main(String[] args) {
+        int day = 2;
+        switch (day) {
+            case 1: System.out.println("Monday"); break;
+            case 2: System.out.println("Tuesday"); break;
+            case 3: System.out.println("Wednesday"); break;
+            default: System.out.println("Other day");
+        }
+    }
 }
 ```
 
@@ -569,14 +679,18 @@ With the traditional colon syntax, execution can fall through into the next case
 ## 6.5 Switch with multiple labels
 
 ```java
-int day = 6;
-switch (day) {
-    case 6:
-    case 7:
-        System.out.println("Weekend");
-        break;
-    default:
-        System.out.println("Weekday");
+class Main {
+    public static void main(String[] args) {
+        int day = 6;
+        switch (day) {
+            case 6:
+            case 7:
+                System.out.println("Weekend");
+                break;
+            default:
+                System.out.println("Weekday");
+        }
+    }
 }
 ```
 
@@ -585,29 +699,31 @@ switch (day) {
 Switch expressions return a value. Arrow cases do not fall through.
 
 ```java
-int day = 2;
-String label = switch (day) {
-    case 1 -> "Monday";
-    case 2 -> "Tuesday";
-    case 3 -> "Wednesday";
-    default -> "Other";
-};
-System.out.println(label);
+class Main {
+    public static void main(String[] args) {
+        int day = 2;
+        String label = switch (day) {
+            case 1 -> "Monday";
+            case 2 -> "Tuesday";
+            case 3 -> "Wednesday";
+            default -> "Other";
+        };
+        System.out.println(label);
+        int number = 3;
+        String kind = switch (number) {
+            case 1, 2 -> "Small";
+            case 3 -> {
+                System.out.println("Matched three");
+                yield "Medium";
+            }
+            default -> "Other";
+        };
+        System.out.println(kind);
+    }
+}
 ```
 
 For a multi-statement arrow case, use a block and `yield` to return the result:
-
-```java
-int number = 3;
-String kind = switch (number) {
-    case 1, 2 -> "Small";
-    case 3 -> {
-        System.out.println("Matched three");
-        yield "Medium";
-    }
-    default -> "Other";
-};
-```
 
 Use the switch style supported by the version your project targets.
 
@@ -622,10 +738,14 @@ A **loop** repeats a block of code while a condition or iteration rule allows it
 Use `while` when the loop should check the condition before each iteration and the number of iterations may not be known in advance.
 
 ```java
-int i = 1;
-while (i <= 5) {
-    System.out.println(i);
-    i++;
+class Main {
+    public static void main(String[] args) {
+        int i = 1;
+        while (i <= 5) {
+            System.out.println(i);
+            i++;
+        }
+    }
 }
 ```
 
@@ -636,11 +756,15 @@ If the condition is false initially, the loop body executes zero times.
 A `do-while` loop evaluates its condition after executing the body, so the body executes at least once.
 
 ```java
-int i = 1;
-do {
-    System.out.println(i);
-    i++;
-} while (i <= 5);
+class Main {
+    public static void main(String[] args) {
+        int i = 1;
+        do {
+            System.out.println(i);
+            i++;
+        } while (i <= 5);
+    }
+}
 ```
 
 Notice the semicolon after the `while` condition.
@@ -650,8 +774,12 @@ Notice the semicolon after the `while` condition.
 A traditional `for` loop puts initialization, condition, and update in one place.
 
 ```java
-for (int i = 1; i <= 5; i++) {
-    System.out.println(i);
+class Main {
+    public static void main(String[] args) {
+        for (int i = 1; i <= 5; i++) {
+            System.out.println(i);
+        }
+    }
 }
 ```
 
@@ -662,11 +790,15 @@ Use it when iteration has a clear counter or range. A loop condition is checked 
 A loop inside another loop is a **nested loop**. For example, this prints a multiplication grid:
 
 ```java
-for (int row = 1; row <= 3; row++) {
-    for (int col = 1; col <= 3; col++) {
-        System.out.print(row * col + "\t");
+class Main {
+    public static void main(String[] args) {
+        for (int row = 1; row <= 3; row++) {
+            for (int col = 1; col <= 3; col++) {
+                System.out.print(row * col + "\\t");
+            }
+            System.out.println();
+        }
     }
-    System.out.println();
 }
 ```
 
@@ -678,10 +810,14 @@ If the outer loop runs `m` times and the inner loop runs `n` times per outer ite
 - `continue` skips the remainder of the current iteration and proceeds to the next iteration.
 
 ```java
-for (int i = 1; i <= 10; i++) {
-    if (i == 3) continue; // skip 3
-    if (i == 8) break;    // stop before printing 8
-    System.out.println(i);
+class Main {
+    public static void main(String[] args) {
+        for (int i = 1; i <= 10; i++) {
+            if (i == 3) continue;
+            if (i == 8) break;
+            System.out.println(i);
+        }
+    }
 }
 ```
 
@@ -705,8 +841,14 @@ A **method** is a named block of code that may accept inputs, perform work, and 
 ## 8.1 Method structure
 
 ```java
-static int add(int a, int b) {
-    return a + b;
+class Main {
+    static int add(int a, int b) {
+        return a + b;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(add(10, 20));
+    }
 }
 ```
 
@@ -718,20 +860,20 @@ static int add(int a, int b) {
 
 Calling it from a static context:
 
-```java
-int result = add(10, 20);
-```
-
 ## 8.2 Parameters and arguments
 
 A **parameter** appears in the method declaration; an **argument** is the actual value supplied by the caller.
 
 ```java
-static void greet(String name) { // name is a parameter
-    System.out.println("Hello, " + name);
-}
+class Main {
+    static void greet(String name) {
+        System.out.println("Hello, " + name);
+    }
 
-greet("Asha"); // "Asha" is an argument
+    public static void main(String[] args) {
+        greet("Asha");
+    }
+}
 ```
 
 Java passes arguments **by value**. For object variables, the value copied is the reference. A method can mutate a referenced mutable object, but reassigning its local parameter does not reassign the caller's variable.
@@ -741,12 +883,19 @@ Java passes arguments **by value**. For object variables, the value copied is th
 A `void` method does not return a value. It may use `return;` to exit early. A non-void method must return a compatible value along every path that completes normally.
 
 ```java
-static void printStatus(boolean active) {
-    if (!active) {
-        System.out.println("Inactive");
-        return;
+class Main {
+    static void printStatus(boolean active) {
+        if (!active) {
+            System.out.println("Inactive");
+            return;
+        }
+        System.out.println("Active");
     }
-    System.out.println("Active");
+
+    public static void main(String[] args) {
+        printStatus(false);
+        printStatus(true);
+    }
 }
 ```
 
@@ -755,16 +904,16 @@ static void printStatus(boolean active) {
 **Overloading** means declaring methods with the same name but different parameter lists.
 
 ```java
-static int add(int a, int b) {
-    return a + b;
-}
+class Main {
+    static int add(int a, int b) { return a + b; }
+    static double add(double a, double b) { return a + b; }
+    static int add(int a, int b, int c) { return a + b + c; }
 
-static double add(double a, double b) {
-    return a + b;
-}
-
-static int add(int a, int b, int c) {
-    return a + b + c;
+    public static void main(String[] args) {
+        System.out.println(add(1, 2));
+        System.out.println(add(1.5, 2.5));
+        System.out.println(add(1, 2, 3));
+    }
 }
 ```
 
@@ -775,12 +924,16 @@ A method cannot be overloaded by changing only its return type. The compiler sel
 A recursive method calls itself. It requires a base case to stop recursion.
 
 ```java
-static int factorial(int n) {
-    if (n < 0) {
-        throw new IllegalArgumentException("n must be non-negative");
+class Main {
+    static int factorial(int n) {
+        if (n < 0) throw new IllegalArgumentException("n must be non-negative");
+        if (n <= 1) return 1;
+        return n * factorial(n - 1);
     }
-    if (n <= 1) return 1; // base case
-    return n * factorial(n - 1);
+
+    public static void main(String[] args) {
+        System.out.println("5! = " + factorial(5));
+    }
 }
 ```
 
@@ -804,7 +957,7 @@ class Computer {
     }
 }
 
-public class Main {
+class Main {
     public static void main(String[] args) {
         Computer c = new Computer();
         c.brand = "Lenovo";
@@ -828,10 +981,18 @@ The variable `c` is not the object itself; it holds a reference to the object.
 Other ways to obtain a reference include receiving it as a method parameter, returning it from a method, retrieving it from a collection, or assigning it from another reference. For an ordinary class instance, creating a new object usually involves `new`, but not every reference assignment creates an object.
 
 ```java
-Computer first = new Computer();
-Computer second = first; // copies the reference, not the object
-second.brand = "Dell";
-System.out.println(first.brand); // Dell
+class Computer {
+    String brand = "Unknown";
+}
+
+class Main {
+    public static void main(String[] args) {
+        Computer first = new Computer();
+        Computer second = first;
+        second.brand = "Dell";
+        System.out.println("first.brand = " + first.brand);
+    }
+}
 ```
 
 Both variables refer to the same object.
@@ -871,9 +1032,13 @@ An **array** is a fixed-length object that stores multiple values of one compone
 Instead of declaring many separate variables, an array groups related values under one variable and allows indexed access.
 
 ```java
-int[] marks = {78, 82, 91, 65};
-System.out.println(marks[0]); // 78
-System.out.println(marks.length); // 4
+class Main {
+    public static void main(String[] args) {
+        int[] marks = {78, 82, 91, 65};
+        System.out.println(marks[0]);
+        System.out.println(marks.length);
+    }
+}
 ```
 
 `length` is a field for arrays, so use `marks.length`, not `marks.length()`.
@@ -881,12 +1046,15 @@ System.out.println(marks.length); // 4
 ## 10.2 Creating arrays
 
 ```java
-int[] numbers = new int[5]; // five ints, each initially 0
-numbers[0] = 10;
-numbers[1] = 20;
-
-String[] names = new String[3]; // entries initially null
-String[] teams = {"A", "B", "C"};
+class Main {
+    public static void main(String[] args) {
+        int[] numbers = new int[5];
+        numbers[0] = 10;
+        numbers[1] = 20;
+        String[] teams = {"A", "B", "C"};
+        System.out.println(numbers[0] + " " + teams[2]);
+    }
+}
 ```
 
 Valid indexes range from `0` to `length - 1`. An invalid index throws `ArrayIndexOutOfBoundsException`.
@@ -896,35 +1064,35 @@ Valid indexes range from `0` to `length - 1`. An invalid index throws `ArrayInde
 Index-based loop:
 
 ```java
-int[] values = {10, 20, 30};
-for (int i = 0; i < values.length; i++) {
-    System.out.println(values[i]);
+class Main {
+    public static void main(String[] args) {
+        int[] values = {10, 20, 30};
+        for (int i = 0; i < values.length; i++) System.out.println(values[i]);
+        for (int value : values) System.out.println("enhanced: " + value);
+    }
 }
 ```
 
 Enhanced `for` loop:
-
-```java
-for (int value : values) {
-    System.out.println(value);
-}
-```
 
 Use an index-based loop when you need the index or need to update a specific array element. In an enhanced loop over primitive values, assigning to the loop variable does not update the array element.
 
 ## 10.4 Sum and maximum example
 
 ```java
-int[] values = {7, 3, 12, 4};
-int sum = 0;
-int max = values[0];
-
-for (int value : values) {
-    sum += value;
-    if (value > max) max = value;
+class Main {
+    public static void main(String[] args) {
+        int[] values = {7, 3, 12, 4};
+        int sum = 0;
+        int max = values[0];
+        for (int value : values) {
+            sum += value;
+            if (value > max) max = value;
+        }
+        System.out.println("Sum = " + sum);
+        System.out.println("Max = " + max);
+    }
 }
-System.out.println("Sum = " + sum);
-System.out.println("Max = " + max);
 ```
 
 This assumes the array is not empty. For general code, handle an empty array before using `values[0]`.
@@ -934,44 +1102,41 @@ This assumes the array is not empty. For general code, handle an empty array bef
 Java multidimensional arrays are arrays whose elements can themselves be arrays.
 
 ```java
-int[][] matrix = {
-    {1, 2, 3},
-    {4, 5, 6}
-};
-
-System.out.println(matrix[1][2]); // 6
-```
-
-A 2D array is not required to be rectangular. Each row may have a different length.
-
-```java
-int[][] jagged = new int[3][];
-jagged[0] = new int[2];
-jagged[1] = new int[4];
-jagged[2] = new int[1];
-
-jagged[1][3] = 99;
-```
-
-Use nested loops to visit every value in a rectangular or jagged array, taking each row's length into account:
-
-```java
-for (int[] row : jagged) {
-    for (int value : row) {
-        System.out.print(value + " ");
+class Main {
+    public static void main(String[] args) {
+        int[][] matrix = { {1, 2, 3}, {4, 5, 6} };
+        System.out.println(matrix[1][2]);
+        int[][] jagged = new int[3][];
+        jagged[0] = new int[] {1, 2};
+        jagged[1] = new int[] {3, 4, 5};
+        jagged[2] = new int[] {6};
+        for (int[] row : jagged) {
+            for (int v : row) System.out.print(v + " ");
+            System.out.println();
+        }
     }
-    System.out.println();
 }
 ```
+
+A 2D array is not required to be rectangular. Each row may have a different length. The example above prints a rectangular matrix value and then visits a jagged array with nested loops.
 
 A 3D array adds one more array level, for example `int[][][] cube = new int[2][3][4];`.
 
 ## 10.6 Array of objects
 
 ```java
-Computer[] computers = new Computer[2];
-computers[0] = new Computer();
-computers[1] = new Computer();
+class Computer { String brand = "Generic"; }
+
+class Main {
+    public static void main(String[] args) {
+        Computer[] computers = new Computer[2];
+        computers[0] = new Computer();
+        computers[1] = new Computer();
+        computers[0].brand = "A";
+        computers[1].brand = "B";
+        System.out.println(computers[0].brand + " " + computers[1].brand);
+    }
+}
 ```
 
 The first line creates an array with two reference slots. It does **not** create two `Computer` objects. Initially both slots contain `null`, so each object must be created or assigned separately before calling its methods.
@@ -994,9 +1159,13 @@ Use arrays when fixed-size indexed storage is suitable. Use collection types suc
 A `String` represents a sequence of characters. A Java `String` is an object, not a primitive type.
 
 ```java
-String language = "Java";
-System.out.println(language.length()); // 4
-System.out.println(language.toUpperCase()); // JAVA
+class Main {
+    public static void main(String[] args) {
+        String language = "Java";
+        System.out.println(language.length());
+        System.out.println(language.toUpperCase());
+    }
+}
 ```
 
 Useful methods include `length()`, `charAt(index)`, `substring(...)`, `contains(...)`, `equals(...)`, `equalsIgnoreCase(...)`, `startsWith(...)`, `endsWith(...)`, `replace(...)`, `split(...)`, `trim()`, and `isBlank()` (Java 11+).
@@ -1008,12 +1177,15 @@ Method names and overloads matter. For example, `substring(begin, end)` includes
 **Immutable** means an object's observable value cannot be changed after creation. String methods that appear to modify text return a new `String`.
 
 ```java
-String text = "java";
-text.toUpperCase(); // returned value is ignored
-System.out.println(text); // java
-
-text = text.toUpperCase();
-System.out.println(text); // JAVA
+class Main {
+    public static void main(String[] args) {
+        String text = "java";
+        text.toUpperCase();
+        System.out.println(text);
+        text = text.toUpperCase();
+        System.out.println(text);
+    }
+}
 ```
 
 Immutability makes strings easier to share safely and enables features such as string pooling.
@@ -1023,13 +1195,16 @@ Immutability makes strings easier to share safely and enables features such as s
 String literals can be reused from a pool of canonical strings. Do not rely on object identity to compare string contents.
 
 ```java
-String a = "java";
-String b = "java";
-String c = new String("java");
-
-System.out.println(a == b);      // commonly true because literals are pooled
-System.out.println(a == c);      // false: different object identity
-System.out.println(a.equals(c)); // true: same text content
+class Main {
+    public static void main(String[] args) {
+        String a = "java";
+        String b = "java";
+        String c = new String("java");
+        System.out.println(a == b);
+        System.out.println(a == c);
+        System.out.println(a.equals(c));
+    }
+}
 ```
 
 Use `equals` for content equality. `==` checks reference identity for objects.
@@ -1037,9 +1212,14 @@ Use `equals` for content equality. `==` checks reference identity for objects.
 ## 11.4 Concatenation
 
 ```java
-String first = "Core";
-String second = "Java";
-String result = first + " " + second;
+class Main {
+    public static void main(String[] args) {
+        String first = "Core";
+        String second = "Java";
+        String result = first + " " + second;
+        System.out.println(result);
+    }
+}
 ```
 
 For a small number of concatenations, `+` is clear and normal. For repeated concatenation inside a loop, prefer a builder to avoid constructing many intermediate strings.
@@ -1049,12 +1229,15 @@ For a small number of concatenations, `+` is clear and normal. For repeated conc
 `StringBuilder` is a mutable sequence of characters. It is usually the preferred option for repeated string construction in a single thread.
 
 ```java
-StringBuilder builder = new StringBuilder();
-builder.append("Hello");
-builder.append(' ');
-builder.append("Java");
-String result = builder.toString();
-System.out.println(result);
+class Main {
+    public static void main(String[] args) {
+        StringBuilder builder = new StringBuilder();
+        builder.append("Hello");
+        builder.append(' ');
+        builder.append("Java");
+        System.out.println(builder.toString());
+    }
+}
 ```
 
 Common methods include `append`, `insert`, `delete`, `replace`, `reverse`, `length`, and `toString`.
@@ -1063,11 +1246,11 @@ Common methods include `append`, `insert`, `delete`, `replace`, `reverse`, `leng
 
 `StringBuffer` is similar to `StringBuilder`, but its methods are synchronized. This provides synchronization for individual operations, not automatically for every multi-step operation involving the buffer. Synchronization can add overhead, so use `StringBuilder` for typical single-threaded construction and choose `StringBuffer` only when its synchronization behavior is relevant.
 
-| Type | Mutable? | Synchronization | Typical use |
-|---|---|---|---|
-| `String` | No | Not needed for its immutable content | Text values |
-| `StringBuilder` | Yes | No built-in synchronization | Efficient single-threaded construction |
-| `StringBuffer` | Yes | Synchronized methods | Legacy or specific synchronized use cases |
+| Type            | Mutable? | Synchronization                      | Typical use                               |
+| --------------- | -------- | ------------------------------------ | ----------------------------------------- |
+| `String`        | No       | Not needed for its immutable content | Text values                               |
+| `StringBuilder` | Yes      | No built-in synchronization          | Efficient single-threaded construction    |
+| `StringBuffer`  | Yes      | Synchronized methods                 | Legacy or specific synchronized use cases |
 
 ---
 
@@ -1082,10 +1265,25 @@ class Employee {
     static String company = "Example Ltd";
     String name;
 
-    Employee(String name) {
-        this.name = name;
+    Employee(String name) { this.name = name; }
+}
+
+class Main {
+    public static void main(String[] args) {
+        Employee e1 = new Employee("Alice");
+        Employee e2 = new Employee("Bob");
+        System.out.println(e1.name + " @ " + Employee.company);
+        Employee.company = "New Co";
+        System.out.println(e2.name + " @ " + Employee.company);
     }
 }
+```
+
+Output:
+
+```text
+Alice @ Example Ltd
+Bob @ New Co
 ```
 
 Every `Employee` instance sees the same `Employee.company` field. Prefer accessing it through the class name, as in `Employee.company`, to show that it is class-level state.
@@ -1096,12 +1294,14 @@ A static method can be called using the class name without creating an object.
 
 ```java
 class MathTools {
-    static int square(int value) {
-        return value * value;
-    }
+    static int square(int value) { return value * value; }
 }
 
-int answer = MathTools.square(5);
+class Main {
+    public static void main(String[] args) {
+        System.out.println(MathTools.square(5));
+    }
+}
 ```
 
 A static method cannot directly use `this`, and it cannot access an instance field without an object reference.
@@ -1113,10 +1313,15 @@ A static block runs when the class is initialized, and is used for complex initi
 ```java
 class Config {
     static final String ENVIRONMENT;
-
     static {
         ENVIRONMENT = "development";
         System.out.println("Config initialized");
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        System.out.println(Config.ENVIRONMENT);
     }
 }
 ```
@@ -1131,15 +1336,19 @@ Keep static initialization simple. Work that can fail or has external side effec
 class BankAccount {
     private double balance;
 
-    public double getBalance() {
-        return balance;
-    }
+    public double getBalance() { return balance; }
 
     public void deposit(double amount) {
-        if (amount <= 0) {
-            throw new IllegalArgumentException("Amount must be positive");
-        }
+        if (amount <= 0) throw new IllegalArgumentException("Amount must be positive");
         balance += amount;
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        BankAccount acc = new BankAccount();
+        acc.deposit(100);
+        System.out.println(acc.getBalance());
     }
 }
 ```
@@ -1155,15 +1364,20 @@ Clients cannot directly assign `balance`; they must use the class's public behav
 class User {
     private String username;
 
-    public String getUsername() {
-        return username;
-    }
+    public String getUsername() { return username; }
 
     public void setUsername(String username) {
-        if (username == null || username.isBlank()) {
+        if (username == null || username.isBlank())
             throw new IllegalArgumentException("Username is required");
-        }
         this.username = username;
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        User u = new User();
+        u.setUsername("asha");
+        System.out.println(u.getUsername());
     }
 }
 ```
@@ -1175,11 +1389,23 @@ Do not generate getters and setters mechanically for every field if they undermi
 `this` refers to the current instance. It commonly distinguishes a field from a parameter with the same name.
 
 ```java
-class Person {
-    private String name;
+class Rectangle {
+    private int width;
+    private int height;
 
-    Person(String name) {
-        this.name = name;
+    Rectangle(int size) { this(size, size); }
+
+    Rectangle(int width, int height) {
+        this.width = width;
+        this.height = height;
+    }
+
+    int area() { return width * height; }
+}
+
+class Main {
+    public static void main(String[] args) {
+        System.out.println(new Rectangle(4).area());
     }
 }
 ```
@@ -1187,22 +1413,6 @@ class Person {
 Here `this.name` means the instance field and `name` on the right is the parameter.
 
 `this(...)` can invoke another constructor in the same class and must be the first constructor invocation statement in that constructor under traditional Java constructor rules:
-
-```java
-class Rectangle {
-    private int width;
-    private int height;
-
-    Rectangle(int size) {
-        this(size, size);
-    }
-
-    Rectangle(int width, int height) {
-        this.width = width;
-        this.height = height;
-    }
-}
-```
 
 Constructor invocation rules have evolved in newer Java releases, but for conventional code and this course, remember the common `this(...)` and `super(...)` chaining rules.
 
@@ -1221,7 +1431,12 @@ class Laptop {
     }
 }
 
-Laptop laptop = new Laptop("Lenovo", 16);
+class Main {
+    public static void main(String[] args) {
+        Laptop laptop = new Laptop("Lenovo", 16);
+        System.out.println(laptop.brand + " " + laptop.ramGb);
+    }
+}
 ```
 
 ### No-argument and parameterized constructors
@@ -1229,17 +1444,6 @@ Laptop laptop = new Laptop("Lenovo", 16);
 - **No-argument constructor:** takes no parameters. It may be written explicitly.
 - **Parameterized constructor:** accepts values used to initialize state.
 - **Default constructor:** the compiler-provided no-argument constructor, generated only when the class declares no constructor at all.
-
-```java
-class A {
-    A() { } // explicitly declared no-argument constructor
-}
-
-class B {
-    B(int value) { }
-    // Compiler does not add B() because a constructor already exists.
-}
-```
 
 If a class declares only `B(int value)`, then `new B()` will not compile unless a no-argument constructor is added.
 
@@ -1250,13 +1454,18 @@ class UserProfile {
     String name;
     int age;
 
-    UserProfile(String name) {
-        this(name, 0);
-    }
+    UserProfile(String name) { this(name, 0); }
 
     UserProfile(String name, int age) {
         this.name = name;
         this.age = age;
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        UserProfile p = new UserProfile("Asha", 22);
+        System.out.println(p.name + " age " + p.age);
     }
 }
 ```
@@ -1268,7 +1477,12 @@ Constructor chaining avoids duplicated initialization code. The call to `this(..
 An **anonymous object** is an object created without storing its reference in a named variable.
 
 ```java
-new StringBuilder().append("Java").append(" notes").toString();
+class Main {
+    public static void main(String[] args) {
+        String s = new StringBuilder().append("Java").append(" notes").toString();
+        System.out.println(s);
+    }
+}
 ```
 
 The object can be used for the immediate expression. If you need to reuse it later, store it in a variable.
@@ -1285,20 +1499,20 @@ The four commonly taught OOP pillars are encapsulation, inheritance, polymorphis
 
 ```java
 class Animal {
-    void eat() {
-        System.out.println("Eating");
-    }
+    void eat() { System.out.println("Eating"); }
 }
 
 class Dog extends Animal {
-    void bark() {
-        System.out.println("Barking");
-    }
+    void bark() { System.out.println("Barking"); }
 }
 
-Dog dog = new Dog();
-dog.eat();  // inherited behavior
-dog.bark();
+class Main {
+    public static void main(String[] args) {
+        Dog dog = new Dog();
+        dog.eat();
+        dog.bark();
+    }
+}
 ```
 
 Use inheritance for a genuine “is-a” relationship. If one object merely uses another object's service, composition is often a better design.
@@ -1316,6 +1530,14 @@ Example of multilevel inheritance:
 class Animal { }
 class Mammal extends Animal { }
 class Dog extends Mammal { }
+
+class Main {
+    public static void main(String[] args) {
+        Dog d = new Dog();
+        System.out.println("Multilevel: Dog -> Mammal -> Animal");
+        System.out.println(d instanceof Animal);
+    }
+}
 ```
 
 Java allows a class to implement multiple interfaces, which provides multiple type contracts without the ambiguity of extending multiple implementation classes.
@@ -1327,25 +1549,21 @@ Java allows a class to implement multiple interfaces, which provides multiple ty
 ```java
 class Vehicle {
     protected String type = "Vehicle";
-
-    Vehicle(String type) {
-        this.type = type;
-    }
-
-    void start() {
-        System.out.println("Vehicle starting");
-    }
+    Vehicle(String type) { this.type = type; }
+    void start() { System.out.println("Vehicle starting"); }
 }
 
 class Car extends Vehicle {
-    Car() {
-        super("Car"); // invoke superclass constructor
-    }
-
-    @Override
-    void start() {
+    Car() { super("Car"); }
+    @Override void start() {
         super.start();
         System.out.println("Car ready");
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        new Car().start();
     }
 }
 ```
@@ -1358,15 +1576,16 @@ If a constructor does not explicitly chain to a superclass constructor, Java nor
 
 ```java
 class Animal {
-    void sound() {
-        System.out.println("Some sound");
-    }
+    void sound() { System.out.println("Some sound"); }
 }
 
 class Dog extends Animal {
-    @Override
-    void sound() {
-        System.out.println("Woof");
+    @Override void sound() { System.out.println("Woof"); }
+}
+
+class Main {
+    public static void main(String[] args) {
+        new Dog().sound();
     }
 }
 ```
@@ -1375,21 +1594,28 @@ Use `@Override` because it lets the compiler detect mistakes in the method signa
 
 ## 13.5 Overloading versus overriding
 
-| Topic | Overloading | Overriding |
-|---|---|---|
-| Purpose | Same operation name with different parameter lists | Subclass changes inherited instance-method behavior |
-| Usually occurs | In the same class or across inherited methods | Between superclass and subclass |
-| Selected by | Compile-time overload resolution | Runtime dispatch for overridden instance methods |
-| Parameter list | Must differ | Must match the overridden method's signature |
-| Annotation | No special annotation required | `@Override` recommended |
+| Topic          | Overloading                                        | Overriding                                          |
+| -------------- | -------------------------------------------------- | --------------------------------------------------- |
+| Purpose        | Same operation name with different parameter lists | Subclass changes inherited instance-method behavior |
+| Usually occurs | In the same class or across inherited methods      | Between superclass and subclass                     |
+| Selected by    | Compile-time overload resolution                   | Runtime dispatch for overridden instance methods    |
+| Parameter list | Must differ                                        | Must match the overridden method's signature        |
+| Annotation     | No special annotation required                     | `@Override` recommended                             |
 
 ## 13.6 Polymorphism
 
 **Polymorphism** means the same interface or superclass reference can work with different concrete object types.
 
 ```java
-Animal a = new Dog();
-a.sound(); // calls Dog.sound()
+class Animal { void sound() { System.out.println("?"); } }
+class Dog extends Animal { @Override void sound() { System.out.println("Woof"); } }
+
+class Main {
+    public static void main(String[] args) {
+        Animal a = new Dog();
+        a.sound();
+    }
+}
 ```
 
 The reference type controls which members the compiler allows you to access. The actual object type determines which overridden instance method implementation runs.
@@ -1399,20 +1625,18 @@ The reference type controls which members the compiler allows you to access. The
 For an overridden instance method, Java chooses the implementation based on the runtime class of the object, not merely the reference variable's declared type.
 
 ```java
-class Shape {
-    void draw() { System.out.println("Shape"); }
-}
-class Circle extends Shape {
-    @Override void draw() { System.out.println("Circle"); }
-}
-class Square extends Shape {
-    @Override void draw() { System.out.println("Square"); }
-}
+class Shape { void draw() { System.out.println("Shape"); } }
+class Circle extends Shape { @Override void draw() { System.out.println("Circle"); } }
+class Square extends Shape { @Override void draw() { System.out.println("Square"); } }
 
-Shape shape = new Circle();
-shape.draw(); // Circle
-shape = new Square();
-shape.draw(); // Square
+class Main {
+    public static void main(String[] args) {
+        Shape shape = new Circle();
+        shape.draw();
+        shape = new Square();
+        shape.draw();
+    }
+}
 ```
 
 This is the foundation of many extensible designs: code can operate on a `Shape` abstraction while concrete subclasses define their own drawing behavior.
@@ -1429,7 +1653,16 @@ This is the foundation of many extensible designs: code can operate on a `Shape`
 final class Utility { }
 
 class Parent {
-    final void cannotOverride() { }
+    final void cannotOverride() { System.out.println("final method"); }
+}
+
+class Main {
+    public static void main(String[] args) {
+        final int x = 1;
+        System.out.println("final variable=" + x);
+        new Parent().cannotOverride();
+        System.out.println("Utility is final class: " + Utility.class.getSimpleName());
+    }
 }
 ```
 
@@ -1444,9 +1677,14 @@ A `final` reference cannot be reassigned, but it does not automatically make the
 A **package** groups related types, helps avoid naming conflicts, and provides package-level access boundaries.
 
 ```java
-package com.example.billing;
-
-public class InvoiceService {
+class Main {
+    public static void main(String[] args) {
+        java.util.List<String> list = new java.util.ArrayList<>();
+        list.add("billing");
+        System.out.println("Packages group types; import java.util.ArrayList for short names.");
+        System.out.println("Package of this demo class: " + Main.class.getPackageName());
+        System.out.println(list);
+    }
 }
 ```
 
@@ -1454,21 +1692,16 @@ The package declaration, if present, appears before imports and type declaration
 
 Use `import` to refer to a type without writing its fully qualified name every time:
 
-```java
-import java.util.ArrayList;
-import java.util.List;
-```
-
 `java.lang` types such as `String`, `System`, and `Math` are available without an explicit import. Import declarations do not copy code; they make type names available to source code.
 
 ## 14.2 Access modifiers
 
-| Modifier | Same class | Same package | Subclass in another package | Unrelated class in another package |
-|---|---:|---:|---:|---:|
-| `private` | Yes | No | No | No |
-| No modifier (package-private) | Yes | Yes | No, unless also same package | No |
-| `protected` | Yes | Yes | Yes, subject to Java's subclass access rules | No |
-| `public` | Yes | Yes | Yes | Yes, if the type and containing context are accessible |
+| Modifier                      | Same class | Same package |                  Subclass in another package |                     Unrelated class in another package |
+| ----------------------------- | ---------: | -----------: | -------------------------------------------: | -----------------------------------------------------: |
+| `private`                     |        Yes |           No |                                           No |                                                     No |
+| No modifier (package-private) |        Yes |          Yes |                 No, unless also same package |                                                     No |
+| `protected`                   |        Yes |          Yes | Yes, subject to Java's subclass access rules |                                                     No |
+| `public`                      |        Yes |          Yes |                                          Yes | Yes, if the type and containing context are accessible |
 
 Important notes:
 
@@ -1489,9 +1722,17 @@ This section consolidates several related concepts because they are easiest to u
 **Upcasting** treats a subclass object as a superclass or interface type. It is normally implicit and safe because every instance of the subclass is also an instance of the superclass.
 
 ```java
-Dog dog = new Dog();
-Animal animal = dog; // upcasting
-animal.sound();
+class Animal {
+    void sound() { System.out.println("Animal"); } }
+class Dog extends Animal { @Override void sound() { System.out.println("Woof"); } }
+
+class Main {
+    public static void main(String[] args) {
+        Dog dog = new Dog();
+        Animal animal = dog;
+        animal.sound();
+    }
+}
 ```
 
 Through `animal`, you can access only members exposed by the compile-time type `Animal`, though overridden methods dispatch to the concrete object implementation.
@@ -1501,22 +1742,22 @@ Through `animal`, you can access only members exposed by the compile-time type `
 **Downcasting** casts a superclass reference to a subclass type. It is only valid when the referenced object really has the target type (or a compatible subtype).
 
 ```java
-Animal animal = new Dog();
-if (animal instanceof Dog) {
-    Dog dog = (Dog) animal;
-    dog.bark();
+class Animal { }
+class Dog extends Animal { void bark() { System.out.println("bark"); } }
+
+class Main {
+    public static void main(String[] args) {
+        Animal animal = new Dog();
+        if (animal instanceof Dog dog) {
+            dog.bark();
+        }
+    }
 }
 ```
 
 Casting an `Animal` that refers to a `Cat` into `Dog` throws `ClassCastException`.
 
 Modern Java supports pattern matching for `instanceof` (permanent since Java 16):
-
-```java
-if (animal instanceof Dog dog) {
-    dog.bark();
-}
-```
 
 ## 15.3 The `Object` class
 
@@ -1537,8 +1778,6 @@ When overriding `equals`, usually override `hashCode` too. Otherwise collections
 Example:
 
 ```java
-import java.util.Objects;
-
 class PersonKey {
     private final String name;
     private final int id;
@@ -1548,21 +1787,23 @@ class PersonKey {
         this.id = id;
     }
 
-    @Override
-    public boolean equals(Object other) {
+    @Override public boolean equals(Object other) {
         if (this == other) return true;
         if (!(other instanceof PersonKey that)) return false;
-        return id == that.id && Objects.equals(name, that.name);
+        return id == that.id && java.util.Objects.equals(name, that.name);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, id);
-    }
+    @Override public int hashCode() { return java.util.Objects.hash(name, id); }
 
-    @Override
-    public String toString() {
-        return "PersonKey{name='" + name + "', id=" + id + "}";
+    @Override public String toString() { return "PersonKey{name='" + name + "', id=" + id + "}"; }
+}
+
+class Main {
+    public static void main(String[] args) {
+        PersonKey a = new PersonKey("Asha", 1);
+        PersonKey b = new PersonKey("Asha", 1);
+        System.out.println(a.equals(b));
+        System.out.println(a.hashCode() == b.hashCode());
     }
 }
 ```
@@ -1573,33 +1814,35 @@ For equality, decide which fields define logical identity and keep that decision
 
 Wrapper classes represent primitive values as objects.
 
-| Primitive | Wrapper |
-|---|---|
-| `byte` | `Byte` |
-| `short` | `Short` |
-| `int` | `Integer` |
-| `long` | `Long` |
-| `float` | `Float` |
-| `double` | `Double` |
-| `char` | `Character` |
-| `boolean` | `Boolean` |
+| Primitive | Wrapper     |
+| --------- | ----------- |
+| `byte`    | `Byte`      |
+| `short`   | `Short`     |
+| `int`     | `Integer`   |
+| `long`    | `Long`      |
+| `float`   | `Float`     |
+| `double`  | `Double`    |
+| `char`    | `Character` |
+| `boolean` | `Boolean`   |
 
 Example:
 
 ```java
-int primitive = 10;
-Integer boxed = primitive; // autoboxing
-int again = boxed;         // unboxing
+class Main {
+    public static void main(String[] args) {
+        int primitive = 10;
+        Integer boxed = primitive;
+        int again = boxed;
+        System.out.println(again);
+        java.util.List<Integer> list = java.util.List.of(1, 2, 3);
+        System.out.println(list);
+    }
+}
 ```
 
 Collections store object references, so `List<Integer>` is common while `List<int>` is invalid.
 
 Be aware of `null` during unboxing:
-
-```java
-Integer value = null;
-// int n = value; // throws NullPointerException at runtime
-```
 
 For value comparison, use methods such as `equals` or compare primitive values. Do not rely on `==` between wrapper objects because object identity and caching can affect the result.
 
@@ -1633,22 +1876,20 @@ An abstract class is declared with `abstract` and cannot be instantiated directl
 ```java
 abstract class Shape {
     abstract double area();
-
-    void describe() {
-        System.out.println("I am a shape");
-    }
+    void describe() { System.out.println("I am a shape"); }
 }
 
 class Circle extends Shape {
     private final double radius;
+    Circle(double radius) { this.radius = radius; }
+    @Override double area() { return Math.PI * radius * radius; }
+}
 
-    Circle(double radius) {
-        this.radius = radius;
-    }
-
-    @Override
-    double area() {
-        return Math.PI * radius * radius;
+class Main {
+    public static void main(String[] args) {
+        Circle c = new Circle(2);
+        c.describe();
+        System.out.println("area=" + c.area());
     }
 }
 ```
@@ -1666,14 +1907,14 @@ interface Payable {
 
 class Invoice implements Payable {
     private final double amount;
+    Invoice(double amount) { this.amount = amount; }
+    public double amountDue() { return amount; }
+}
 
-    Invoice(double amount) {
-        this.amount = amount;
-    }
-
-    @Override
-    public double amountDue() {
-        return amount;
+class Main {
+    public static void main(String[] args) {
+        Payable p = new Invoice(99.5);
+        System.out.println(p.amountDue());
     }
 }
 ```
@@ -1682,46 +1923,36 @@ When implementing an interface method, the implementation must be `public` becau
 
 ## 17.4 Abstract class versus interface
 
-| Abstract class | Interface |
-|---|---|
-| A class can extend only one class | A class can implement multiple interfaces |
-| Can hold instance state and constructors | Does not provide ordinary per-instance fields; fields declared in interfaces are implicitly `public static final` constants |
-| Useful for related classes sharing state and implementation | Useful for defining capabilities or contracts across different classes |
-| Can mix abstract and concrete methods | Can declare abstract methods and, in modern Java, default/static/private methods |
+| Abstract class                                              | Interface                                                                                                                   |
+| ----------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| A class can extend only one class                           | A class can implement multiple interfaces                                                                                   |
+| Can hold instance state and constructors                    | Does not provide ordinary per-instance fields; fields declared in interfaces are implicitly `public static final` constants |
+| Useful for related classes sharing state and implementation | Useful for defining capabilities or contracts across different classes                                                      |
+| Can mix abstract and concrete methods                       | Can declare abstract methods and, in modern Java, default/static/private methods                                            |
 
 Choose based on the design, not simply because one feels “more object-oriented.” Interfaces are often useful at boundaries between components.
 
 ## 17.5 Multiple interfaces
 
 ```java
-interface Flyable {
-    void fly();
-}
-
-interface Trackable {
-    String location();
-}
+interface Flyable { void fly(); }
+interface Trackable { String location(); }
 
 class Drone implements Flyable, Trackable {
-    @Override
-    public void fly() {
-        System.out.println("Drone flying");
-    }
+    public void fly() { System.out.println("Drone flying"); }
+    public String location() { return "Warehouse"; }
+}
 
-    @Override
-    public String location() {
-        return "Warehouse";
+class Main {
+    public static void main(String[] args) {
+        Drone d = new Drone();
+        d.fly();
+        System.out.println(d.location());
     }
 }
 ```
 
 A class may extend one class and implement several interfaces:
-
-```java
-class SmartDrone extends SomeBaseClass implements Flyable, Trackable {
-    // implementations
-}
-```
 
 ## 17.6 Interface categories often taught in beginner courses
 
@@ -1751,14 +1982,16 @@ Common forms:
 ```java
 class Outer {
     static class Nested {
-        void show() {
-            System.out.println("Nested class");
-        }
+        void show() { System.out.println("Nested class"); }
     }
 }
 
-Outer.Nested nested = new Outer.Nested();
-nested.show();
+class Main {
+    public static void main(String[] args) {
+        Outer.Nested nested = new Outer.Nested();
+        nested.show();
+    }
+}
 ```
 
 ## 18.3 Inner member class
@@ -1766,17 +1999,18 @@ nested.show();
 ```java
 class Outer {
     private String message = "Hello from Outer";
-
     class Inner {
-        void show() {
-            System.out.println(message);
-        }
+        void show() { System.out.println(message); }
     }
 }
 
-Outer outer = new Outer();
-Outer.Inner inner = outer.new Inner();
-inner.show();
+class Main {
+    public static void main(String[] args) {
+        Outer outer = new Outer();
+        Outer.Inner inner = outer.new Inner();
+        inner.show();
+    }
+}
 ```
 
 A non-static inner instance is created through an enclosing instance, using `outer.new Inner()` syntax.
@@ -1786,14 +2020,14 @@ A non-static inner instance is created through an enclosing instance, using `out
 An anonymous class is useful for a one-off implementation of an interface or subclass of a class. Before lambdas became common, anonymous classes were frequently used for callbacks.
 
 ```java
-Runnable task = new Runnable() {
-    @Override
-    public void run() {
-        System.out.println("Running task");
+class Main {
+    public static void main(String[] args) {
+        Runnable task = new Runnable() {
+            @Override public void run() { System.out.println("Running task"); }
+        };
+        task.run();
     }
-};
-
-new Thread(task).start();
+}
 ```
 
 For a functional interface, a lambda is often shorter and clearer. Anonymous classes remain useful when you need a separate class body, multiple methods, or distinct `this` semantics.
@@ -1804,36 +2038,29 @@ An **enum** is a special type that represents a fixed set of named constants.
 
 ```java
 enum Status {
-    NEW,
-    IN_PROGRESS,
-    COMPLETED
+    NEW, IN_PROGRESS, COMPLETED
 }
 
-Status status = Status.IN_PROGRESS;
-if (status == Status.COMPLETED) {
-    System.out.println("Done");
+enum Priority {
+    LOW(1), MEDIUM(2), HIGH(3);
+    private final int level;
+    Priority(int level) { this.level = level; }
+    public int level() { return level; }
+}
+
+class Main {
+    public static void main(String[] args) {
+        Status status = Status.IN_PROGRESS;
+        if (status == Status.COMPLETED) System.out.println("Done");
+        else System.out.println(status);
+        System.out.println(Priority.HIGH.level());
+    }
 }
 ```
 
 Enums are type-safe compared with arbitrary strings such as `"completed"`. Enum constants are instances of the enum type.
 
 Enums can also hold fields, constructors, and methods:
-
-```java
-enum Priority {
-    LOW(1), MEDIUM(2), HIGH(3);
-
-    private final int level;
-
-    Priority(int level) {
-        this.level = level;
-    }
-
-    public int level() {
-        return level;
-    }
-}
-```
 
 Enum constructors are not called with `new` from ordinary client code. For conditionals, use `switch` or compare enum constants directly.
 
@@ -1851,9 +2078,16 @@ Common examples:
 Example:
 
 ```java
-@Override
-public String toString() {
-    return "Example";
+class Example {
+    @Override public String toString() { return "Example"; }
+    @Deprecated @SuppressWarnings("deprecation")
+    void oldApi() { System.out.println("deprecated"); }
+}
+
+class Main {
+    public static void main(String[] args) {
+        System.out.println(new Example());
+    }
 }
 ```
 
@@ -1872,6 +2106,13 @@ A **functional interface** is an interface with one abstract method, suitable fo
 interface Calculator {
     int calculate(int a, int b);
 }
+
+class Main {
+    public static void main(String[] args) {
+        Calculator add = (a, b) -> a + b;
+        System.out.println(add.calculate(3, 4));
+    }
+}
 ```
 
 ## 19.2 Lambda expression
@@ -1879,29 +2120,42 @@ interface Calculator {
 A **lambda expression** is a concise way to provide an implementation of a functional interface.
 
 ```java
-Calculator add = (a, b) -> a + b;
-Calculator multiply = (a, b) -> a * b;
+@FunctionalInterface
+interface Calculator {
+    int calculate(int a, int b);
+}
 
-System.out.println(add.calculate(3, 4));      // 7
-System.out.println(multiply.calculate(3, 4)); // 12
+class Main {
+    public static void main(String[] args) {
+        Calculator add = (a, b) -> a + b;
+        Calculator multiply = (a, b) -> a * b;
+        System.out.println(add.calculate(3, 4));
+        System.out.println(multiply.calculate(3, 4));
+    }
+}
 ```
 
 General form:
-
-```java
-(parameters) -> expression
-(parameters) -> { statements; }
-```
 
 The compiler infers parameter types from the target functional interface in many cases.
 
 ## 19.3 Lambda with a block and return
 
 ```java
-Calculator largerSum = (a, b) -> {
-    int result = a + b;
-    return result;
-};
+@FunctionalInterface
+interface Calculator {
+    int calculate(int a, int b);
+}
+
+class Main {
+    public static void main(String[] args) {
+        Calculator largerSum = (a, b) -> {
+            int result = a + b;
+            return result;
+        };
+        System.out.println(largerSum.calculate(5, 7));
+    }
+}
 ```
 
 A single-expression lambda can omit braces and an explicit `return`. A block lambda that returns a value generally uses `return` and must return along every normal path.
@@ -1910,14 +2164,14 @@ A single-expression lambda can omit braces and an explicit `return`. A block lam
 
 The `java.util.function` package provides many ready-made functional interfaces:
 
-| Interface | Core method concept | Example use |
-|---|---|---|
-| `Predicate<T>` | `boolean test(T value)` | Check a condition, such as `age >= 18` |
-| `Function<T, R>` | `R apply(T value)` | Transform a value |
-| `Consumer<T>` | `void accept(T value)` | Perform an action with a value |
-| `Supplier<T>` | `T get()` | Provide a value without an input |
-| `UnaryOperator<T>` | `T apply(T value)` | Transform a value into the same type |
-| `BinaryOperator<T>` | `T apply(T left, T right)` | Combine two values of the same type |
+| Interface           | Core method concept        | Example use                            |
+| ------------------- | -------------------------- | -------------------------------------- |
+| `Predicate<T>`      | `boolean test(T value)`    | Check a condition, such as `age >= 18` |
+| `Function<T, R>`    | `R apply(T value)`         | Transform a value                      |
+| `Consumer<T>`       | `void accept(T value)`     | Perform an action with a value         |
+| `Supplier<T>`       | `T get()`                  | Provide a value without an input       |
+| `UnaryOperator<T>`  | `T apply(T value)`         | Transform a value into the same type   |
+| `BinaryOperator<T>` | `T apply(T left, T right)` | Combine two values of the same type    |
 
 These interfaces are heavily used by the Stream API.
 
@@ -1926,9 +2180,13 @@ These interfaces are heavily used by the Stream API.
 A lambda can capture a local variable only when it is final or effectively final, meaning it is assigned once and not reassigned afterward.
 
 ```java
-int base = 10;
-java.util.function.IntUnaryOperator addBase = value -> value + base;
-System.out.println(addBase.applyAsInt(5)); // 15
+class Main {
+    public static void main(String[] args) {
+        int base = 10;
+        java.util.function.IntUnaryOperator addBase = value -> value + base;
+        System.out.println(addBase.applyAsInt(5));
+    }
+}
 ```
 
 The lambda captures the value of `base`; changing `base` afterward would violate the effectively-final rule.
@@ -1938,8 +2196,12 @@ The lambda captures the value of `base`; changing `base` afterward would violate
 A **method reference** is a compact form of a lambda when an existing method already matches the required functional signature.
 
 ```java
-java.util.List<String> names = java.util.List.of("Asha", "Ravi");
-names.forEach(System.out::println);
+class Main {
+    public static void main(String[] args) {
+        java.util.List<String> names = java.util.List.of("Asha", "Ravi");
+        names.forEach(System.out::println);
+    }
+}
 ```
 
 `System.out::println` is equivalent in purpose to a lambda such as `name -> System.out.println(name)`.
@@ -1981,11 +2243,15 @@ Do not catch every `Throwable` or `Error` indiscriminately. Catch failures that 
 ## 20.3 `try-catch`
 
 ```java
-try {
-    int result = 10 / 0;
-    System.out.println(result);
-} catch (ArithmeticException ex) {
-    System.out.println("Cannot divide by zero");
+class Main {
+    public static void main(String[] args) {
+        try {
+            int result = 10 / 0;
+            System.out.println(result);
+        } catch (ArithmeticException ex) {
+            System.out.println("Cannot divide by zero");
+        }
+    }
 }
 ```
 
@@ -1994,13 +2260,17 @@ The code in `try` is attempted. If a matching exception is thrown, control moves
 ## 20.4 Multiple catch blocks
 
 ```java
-try {
-    int value = Integer.parseInt("abc");
-    System.out.println(10 / value);
-} catch (NumberFormatException ex) {
-    System.out.println("Input was not a valid integer");
-} catch (ArithmeticException ex) {
-    System.out.println("Cannot divide by zero");
+class Main {
+    public static void main(String[] args) {
+        try {
+            int value = Integer.parseInt("abc");
+            System.out.println(10 / value);
+        } catch (NumberFormatException ex) {
+            System.out.println("Input was not a valid integer");
+        } catch (ArithmeticException ex) {
+            System.out.println("Cannot divide by zero");
+        }
+    }
 }
 ```
 
@@ -2008,25 +2278,22 @@ Put more specific exception types before broader types. A broader catch first ca
 
 Multi-catch lets one handler catch unrelated alternatives:
 
-```java
-try {
-    java.nio.file.Files.readString(java.nio.file.Path.of("data.txt"));
-} catch (java.io.IOException | IllegalArgumentException ex) {
-    System.out.println(ex.getMessage());
-}
-```
-
 ## 20.5 `finally`
 
 A `finally` block normally runs after `try` and `catch` processing, whether or not an exception occurs. It is commonly used for cleanup in older code.
 
 ```java
-try {
-    System.out.println("Work");
-} catch (RuntimeException ex) {
-    System.out.println("Handled");
-} finally {
-    System.out.println("Cleanup path");
+class Main {
+    public static void main(String[] args) {
+        try {
+            System.out.println("Work");
+            if (args.length > 0 && "fail".equals(args[0])) throw new RuntimeException("fail");
+        } catch (RuntimeException ex) {
+            System.out.println("Handled");
+        } finally {
+            System.out.println("Cleanup path");
+        }
+    }
 }
 ```
 
@@ -2038,23 +2305,29 @@ There are unusual cases where a `finally` block may not run, such as abrupt JVM 
 - `throws` declares that a method may propagate one or more checked exceptions to its caller.
 
 ```java
-static void validateAge(int age) {
-    if (age < 18) {
-        throw new IllegalArgumentException("Age must be at least 18");
+class Main {
+    static void validateAge(int age) {
+        if (age < 18) throw new IllegalArgumentException("Age must be at least 18");
+    }
+
+    static String readFirstLine(java.nio.file.Path path) throws java.io.IOException {
+        try (var reader = java.nio.file.Files.newBufferedReader(path)) {
+            return reader.readLine();
+        }
+    }
+
+    public static void main(String[] args) {
+        try {
+            validateAge(16);
+        } catch (IllegalArgumentException ex) {
+            System.out.println(ex.getMessage());
+        }
+        System.out.println("throw raises; throws declares propagation");
     }
 }
 ```
 
 Checked exception declaration example:
-
-```java
-static String readFirstLine(java.nio.file.Path path)
-        throws java.io.IOException {
-    try (var reader = java.nio.file.Files.newBufferedReader(path)) {
-        return reader.readLine();
-    }
-}
-```
 
 The caller must catch `IOException` or declare it in its own `throws` clause.
 
@@ -2064,23 +2337,26 @@ Create a custom exception when a domain-specific failure deserves a clear type.
 
 ```java
 class InsufficientFundsException extends Exception {
-    InsufficientFundsException(String message) {
-        super(message);
-    }
+    InsufficientFundsException(String message) { super(message); }
 }
 
 class Wallet {
     private int balance;
-
-    Wallet(int balance) {
-        this.balance = balance;
-    }
-
+    Wallet(int balance) { this.balance = balance; }
     void withdraw(int amount) throws InsufficientFundsException {
-        if (amount > balance) {
-            throw new InsufficientFundsException("Not enough balance");
-        }
+        if (amount > balance) throw new InsufficientFundsException("Not enough balance");
         balance -= amount;
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        Wallet w = new Wallet(50);
+        try {
+            w.withdraw(100);
+        } catch (InsufficientFundsException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 }
 ```
@@ -2098,19 +2374,21 @@ Declare checked exceptions when they form a meaningful part of the method contra
 Try-with-resources automatically closes resources that implement `AutoCloseable`, including many file, stream, and database APIs.
 
 ```java
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-
-class ReadFileExample {
-    static void printFile(Path path) throws IOException {
-        try (BufferedReader reader = Files.newBufferedReader(path)) {
+class Main {
+    static void printFile(java.nio.file.Path path) throws java.io.IOException {
+        try (var reader = java.nio.file.Files.newBufferedReader(path)) {
             String line;
             while ((line = reader.readLine()) != null) {
                 System.out.println(line);
             }
         }
+    }
+
+    public static void main(String[] args) throws java.io.IOException {
+        java.nio.file.Path tmp = java.nio.file.Files.createTempFile("demo", ".txt");
+        java.nio.file.Files.writeString(tmp, "line1\\nline2");
+        printFile(tmp);
+        java.nio.file.Files.deleteIfExists(tmp);
     }
 }
 ```
@@ -2135,15 +2413,15 @@ The resource is closed automatically when control exits the `try` block, includi
 `Scanner` is beginner-friendly and can parse common types from keyboard input.
 
 ```java
-import java.util.Scanner;
-
-public class Main {
+class Main {
     public static void main(String[] args) {
-        try (Scanner scanner = new Scanner(System.in)) {
-            System.out.print("Enter your age: ");
-            int age = scanner.nextInt();
-            System.out.println("Age: " + age);
-        }
+        java.util.Scanner scanner = new java.util.Scanner("26\\nAsha\\n");
+        System.out.print("Enter your age: ");
+        int age = scanner.nextInt();
+        scanner.nextLine();
+        String name = scanner.nextLine();
+        System.out.println("Age: " + age + ", name: " + name);
+        scanner.close();
     }
 }
 ```
@@ -2152,30 +2430,20 @@ public class Main {
 
 Example of consuming the rest of the line:
 
-```java
-int age = scanner.nextInt();
-scanner.nextLine(); // consume remaining newline
-String fullName = scanner.nextLine();
-```
-
 ## 21.2 `BufferedReader`
 
 `BufferedReader` reads text efficiently, usually line by line. Parsing numeric values is done separately.
 
 ```java
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
-public class Main {
-    public static void main(String[] args) throws IOException {
-        BufferedReader reader = new BufferedReader(
-            new InputStreamReader(System.in)
+class Main {
+    public static void main(String[] args) throws java.io.IOException {
+        java.io.BufferedReader reader = new java.io.BufferedReader(
+            new java.io.InputStreamReader(new java.io.ByteArrayInputStream("21\\n".getBytes()))
         );
-
         System.out.print("Enter a number: ");
         int number = Integer.parseInt(reader.readLine());
         System.out.println(number * 2);
+        reader.close();
     }
 }
 ```
@@ -2184,11 +2452,11 @@ public class Main {
 
 ## 21.3 `Scanner` versus `BufferedReader`
 
-| `Scanner` | `BufferedReader` |
-|---|---|
-| Convenient token parsing (`nextInt`, `nextDouble`, etc.) | Primarily reads characters and lines |
-| Often easier for beginner console programs | Often preferred for efficient line input |
-| Parsing convenience can come with overhead | Numeric conversion must be performed explicitly |
+| `Scanner`                                                | `BufferedReader`                                |
+| -------------------------------------------------------- | ----------------------------------------------- |
+| Convenient token parsing (`nextInt`, `nextDouble`, etc.) | Primarily reads characters and lines            |
+| Often easier for beginner console programs               | Often preferred for efficient line input        |
+| Parsing convenience can come with overhead               | Numeric conversion must be performed explicitly |
 
 For application code, validate input at the boundary and communicate invalid input clearly.
 
@@ -2206,16 +2474,14 @@ Use concurrency when tasks can usefully overlap, such as waiting for I/O or perf
 
 ```java
 class WorkerThread extends Thread {
-    @Override
-    public void run() {
-        System.out.println("Worker is running");
-    }
+    @Override public void run() { System.out.println("Worker is running"); }
 }
 
-public class Main {
-    public static void main(String[] args) {
+class Main {
+    public static void main(String[] args) throws InterruptedException {
         WorkerThread worker = new WorkerThread();
         worker.start();
+        worker.join();
     }
 }
 ```
@@ -2227,9 +2493,14 @@ Call `start()` to request a new thread of execution. Calling `run()` directly is
 `Runnable` separates the task from the thread that runs it.
 
 ```java
-Runnable task = () -> System.out.println("Task running");
-Thread worker = new Thread(task);
-worker.start();
+class Main {
+    public static void main(String[] args) throws InterruptedException {
+        Runnable task = () -> System.out.println("Task running");
+        Thread worker = new Thread(task);
+        worker.start();
+        worker.join();
+    }
+}
 ```
 
 In most designs, implementing or supplying a `Runnable` (or using an executor) is more flexible than subclassing `Thread`, because the task class can still extend another class.
@@ -2237,16 +2508,20 @@ In most designs, implementing or supplying a `Runnable` (or using an executor) i
 ## 22.4 Multiple threads
 
 ```java
-Runnable task = () -> {
-    for (int i = 1; i <= 3; i++) {
-        System.out.println(Thread.currentThread().getName() + ": " + i);
+class Main {
+    public static void main(String[] args) throws InterruptedException {
+        Runnable task = () -> {
+            for (int i = 1; i <= 3; i++)
+                System.out.println(Thread.currentThread().getName() + ": " + i);
+        };
+        Thread first = new Thread(task, "First");
+        Thread second = new Thread(task, "Second");
+        first.start();
+        second.start();
+        first.join();
+        second.join();
     }
-};
-
-Thread first = new Thread(task, "First");
-Thread second = new Thread(task, "Second");
-first.start();
-second.start();
+}
 ```
 
 The output order can vary. Do not assume that one thread will finish all its lines before another begins unless you explicitly coordinate them.
@@ -2258,23 +2533,21 @@ The output order can vary. Do not assume that one thread will finish all its lin
 - `interrupt()` requests interruption. Code should handle or propagate `InterruptedException` appropriately.
 
 ```java
-Thread worker = new Thread(() -> {
-    try {
-        Thread.sleep(500);
-        System.out.println("Worker complete");
-    } catch (InterruptedException ex) {
-        Thread.currentThread().interrupt(); // restore interrupt status
-        return;
+class Main {
+    public static void main(String[] args) throws InterruptedException {
+        Thread worker = new Thread(() -> {
+            try {
+                Thread.sleep(100);
+                System.out.println("Worker complete");
+            } catch (InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            }
+        });
+        worker.start();
+        worker.join();
+        System.out.println("Main continues after join");
     }
-});
-
-worker.start();
-try {
-    worker.join();
-} catch (InterruptedException ex) {
-    Thread.currentThread().interrupt();
 }
-System.out.println("Main continues after join");
 ```
 
 Do not use `sleep` as a substitute for correct synchronization. Time delays do not guarantee that a particular thread has completed a task.
@@ -2290,9 +2563,18 @@ A **race condition** occurs when the result depends on timing or interleaving of
 ```java
 class Counter {
     int count;
+    void increment() { count++; }
+}
 
-    void increment() {
-        count++; // not an atomic operation
+class Main {
+    public static void main(String[] args) throws InterruptedException {
+        Counter counter = new Counter();
+        Runnable task = () -> { for (int i = 0; i < 1000; i++) counter.increment(); };
+        Thread a = new Thread(task);
+        Thread b = new Thread(task);
+        a.start(); b.start();
+        a.join(); b.join();
+        System.out.println("Unsafe count (may be < 2000): " + counter.count);
     }
 }
 ```
@@ -2306,13 +2588,19 @@ A synchronized instance method acquires that object's monitor before executing. 
 ```java
 class SafeCounter {
     private int count;
+    public synchronized void increment() { count++; }
+    public synchronized int getCount() { return count; }
+}
 
-    public synchronized void increment() {
-        count++;
-    }
-
-    public synchronized int getCount() {
-        return count;
+class Main {
+    public static void main(String[] args) throws InterruptedException {
+        SafeCounter counter = new SafeCounter();
+        Runnable task = () -> { for (int i = 0; i < 1000; i++) counter.increment(); };
+        Thread a = new Thread(task);
+        Thread b = new Thread(task);
+        a.start(); b.start();
+        a.join(); b.join();
+        System.out.println("Synchronized count: " + counter.getCount());
     }
 }
 ```
@@ -2354,12 +2642,12 @@ High-level distinction:
 
 ## 23.2 Common interfaces and implementations
 
-| Interface | Common implementations | Main property |
-|---|---|---|
-| `List<E>` | `ArrayList`, `LinkedList` | Ordered sequence; duplicates allowed |
-| `Set<E>` | `HashSet`, `LinkedHashSet`, `TreeSet` | No duplicate elements according to its equality/ordering semantics |
-| `Queue<E>` | `ArrayDeque`, `PriorityQueue`, some concurrent queues | Elements are often processed in a queue-specific order |
-| `Map<K,V>` | `HashMap`, `LinkedHashMap`, `TreeMap`, `ConcurrentHashMap` | Unique keys mapped to values |
+| Interface  | Common implementations                                     | Main property                                                      |
+| ---------- | ---------------------------------------------------------- | ------------------------------------------------------------------ |
+| `List<E>`  | `ArrayList`, `LinkedList`                                  | Ordered sequence; duplicates allowed                               |
+| `Set<E>`   | `HashSet`, `LinkedHashSet`, `TreeSet`                      | No duplicate elements according to its equality/ordering semantics |
+| `Queue<E>` | `ArrayDeque`, `PriorityQueue`, some concurrent queues      | Elements are often processed in a queue-specific order             |
+| `Map<K,V>` | `HashMap`, `LinkedHashMap`, `TreeMap`, `ConcurrentHashMap` | Unique keys mapped to values                                       |
 
 Choose the implementation based on ordering requirements, performance characteristics, concurrency needs, and whether nulls are allowed.
 
@@ -2368,11 +2656,15 @@ Choose the implementation based on ordering requirements, performance characteri
 **Generics** allow types to be parameterized. They improve compile-time type safety and reduce casting.
 
 ```java
-java.util.List<String> names = new java.util.ArrayList<>();
-names.add("Asha");
-names.add("Ravi");
-
-String first = names.get(0); // no cast required
+class Main {
+    public static void main(String[] args) {
+        java.util.List<String> names = new java.util.ArrayList<>();
+        names.add("Asha");
+        names.add("Ravi");
+        String first = names.get(0);
+        System.out.println(first);
+    }
+}
 ```
 
 `String` is the type argument. `List<int>` is invalid because generic type arguments must be reference types, so use `List<Integer>` when working with integers.
@@ -2384,18 +2676,19 @@ The diamond operator `<>` lets the compiler infer the type argument from context
 `ArrayList` is a resizable-array implementation of `List`. It preserves insertion order and permits duplicates.
 
 ```java
-import java.util.ArrayList;
-import java.util.List;
-
-List<String> languages = new ArrayList<>();
-languages.add("Java");
-languages.add("Python");
-languages.add("Java");
-
-System.out.println(languages.get(0)); // Java
-System.out.println(languages.size()); // 3
-languages.set(1, "TypeScript");
-languages.remove("Java"); // removes the first matching item
+class Main {
+    public static void main(String[] args) {
+        java.util.List<String> languages = new java.util.ArrayList<>();
+        languages.add("Java");
+        languages.add("Python");
+        languages.add("Java");
+        System.out.println(languages.get(0));
+        System.out.println(languages.size());
+        languages.set(1, "TypeScript");
+        languages.remove("Java");
+        System.out.println(languages);
+    }
+}
 ```
 
 Useful methods include `add`, `get`, `set`, `remove`, `contains`, `size`, `isEmpty`, and `clear`.
@@ -2412,11 +2705,13 @@ Avoid removing elements from a list using an increasing index without adjusting 
 ## 23.5 Enhanced `for` loop and `forEach`
 
 ```java
-for (String language : languages) {
-    System.out.println(language);
+class Main {
+    public static void main(String[] args) {
+        java.util.List<String> languages = java.util.List.of("Java", "Python");
+        for (String language : languages) System.out.println(language);
+        languages.forEach(System.out::println);
+    }
 }
-
-languages.forEach(System.out::println);
 ```
 
 Use an enhanced loop when the code should visit each element. `forEach` accepts a `Consumer` and is convenient for simple actions. For more complex transformations, Stream operations may be clearer.
@@ -2426,14 +2721,16 @@ Use an enhanced loop when the code should visit each element. `forEach` accepts 
 A `Set` stores no duplicates according to the set's equality or ordering rules.
 
 ```java
-import java.util.HashSet;
-import java.util.Set;
-
-Set<String> skills = new HashSet<>();
-skills.add("Java");
-skills.add("React");
-skills.add("Java");
-System.out.println(skills.size()); // 2
+class Main {
+    public static void main(String[] args) {
+        java.util.Set<String> skills = new java.util.HashSet<>();
+        skills.add("Java");
+        skills.add("React");
+        skills.add("Java");
+        System.out.println(skills.size());
+        System.out.println(skills);
+    }
+}
 ```
 
 Common choices:
@@ -2449,27 +2746,22 @@ For objects in `HashSet`, implement `equals` and `hashCode` consistently. For so
 A `Map<K,V>` associates each key with a value. Keys are unique; a new value for an existing key replaces the previous value.
 
 ```java
-import java.util.HashMap;
-import java.util.Map;
-
-Map<String, Integer> scores = new HashMap<>();
-scores.put("Asha", 90);
-scores.put("Ravi", 85);
-scores.put("Asha", 95); // replaces Asha's value
-
-System.out.println(scores.get("Asha")); // 95
-System.out.println(scores.containsKey("Ravi")); // true
+class Main {
+    public static void main(String[] args) {
+        java.util.Map<String, Integer> scores = new java.util.HashMap<>();
+        scores.put("Asha", 90);
+        scores.put("Ravi", 85);
+        scores.put("Asha", 95);
+        System.out.println(scores.get("Asha"));
+        for (var e : scores.entrySet())
+            System.out.println(e.getKey() + " -> " + e.getValue());
+    }
+}
 ```
 
 Common methods include `put`, `get`, `getOrDefault`, `containsKey`, `containsValue`, `remove`, `keySet`, `values`, and `entrySet`.
 
 Iterate entries when both key and value are needed:
-
-```java
-for (Map.Entry<String, Integer> entry : scores.entrySet()) {
-    System.out.println(entry.getKey() + " -> " + entry.getValue());
-}
-```
 
 Common implementations:
 
@@ -2486,30 +2778,23 @@ Both define ordering, but they serve different design purposes.
 - `Comparator<T>` is a separate object or lambda that defines a chosen ordering through `compare`.
 
 ```java
-import java.util.Comparator;
-import java.util.List;
-
 record Employee(String name, int salary) { }
 
-List<Employee> employees = List.of(
-    new Employee("Asha", 50000),
-    new Employee("Ravi", 65000),
-    new Employee("Mina", 52000)
-);
-
-employees.stream()
-    .sorted(Comparator.comparingInt(Employee::salary))
-    .forEach(System.out::println);
+class Main {
+    public static void main(String[] args) {
+        java.util.List<Employee> employees = java.util.List.of(
+            new Employee("Asha", 50000),
+            new Employee("Ravi", 65000),
+            new Employee("Mina", 52000)
+        );
+        employees.stream()
+            .sorted(java.util.Comparator.comparingInt(Employee::salary))
+            .forEach(System.out::println);
+    }
+}
 ```
 
 More comparator examples:
-
-```java
-Comparator<Employee> bySalary = Comparator.comparingInt(Employee::salary);
-Comparator<Employee> byName = Comparator.comparing(Employee::name);
-Comparator<Employee> bySalaryDescending = bySalary.reversed();
-Comparator<Employee> bySalaryThenName = bySalary.thenComparing(byName);
-```
 
 The comparator API reduces fragile handwritten comparison logic.
 
@@ -2532,12 +2817,14 @@ The **Stream API** provides a declarative way to process a sequence of elements 
 Example: print names that start with `A`.
 
 ```java
-import java.util.List;
-
-List<String> names = List.of("Asha", "Ravi", "Anil", "Mina");
-names.stream()
-    .filter(name -> name.startsWith("A"))
-    .forEach(System.out::println);
+class Main {
+    public static void main(String[] args) {
+        java.util.List<String> names = java.util.List.of("Asha", "Ravi", "Anil", "Mina");
+        names.stream()
+            .filter(name -> name.startsWith("A"))
+            .forEach(System.out::println);
+    }
+}
 ```
 
 ## 24.2 Stream pipeline
@@ -2555,10 +2842,14 @@ Many intermediate operations are lazy. Nothing may be processed until a terminal
 `filter` keeps elements that pass a predicate.
 
 ```java
-List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
-List<Integer> evens = numbers.stream()
-    .filter(n -> n % 2 == 0)
-    .toList(); // unmodifiable result on modern Java
+class Main {
+    public static void main(String[] args) {
+        java.util.List<Integer> evens = java.util.List.of(1, 2, 3, 4, 5, 6).stream()
+            .filter(n -> n % 2 == 0)
+            .toList();
+        System.out.println(evens);
+    }
+}
 ```
 
 `Stream.toList()` is available since Java 16 and returns an unmodifiable list. If you need a mutable list, use a collector such as `collect(Collectors.toCollection(ArrayList::new))`.
@@ -2568,10 +2859,14 @@ List<Integer> evens = numbers.stream()
 `map` transforms each input value into a result.
 
 ```java
-List<String> names = List.of("asha", "ravi");
-List<String> upper = names.stream()
-    .map(String::toUpperCase)
-    .toList();
+class Main {
+    public static void main(String[] args) {
+        java.util.List<String> upper = java.util.List.of("asha", "ravi").stream()
+            .map(String::toUpperCase)
+            .toList();
+        System.out.println(upper);
+    }
+}
 ```
 
 The number of elements usually stays the same, although each element's value or type can change.
@@ -2579,12 +2874,15 @@ The number of elements usually stays the same, although each element's value or 
 ## 24.5 `sorted` and `distinct`
 
 ```java
-List<Integer> values = List.of(4, 2, 4, 1, 3, 2);
-List<Integer> result = values.stream()
-    .distinct()
-    .sorted()
-    .toList();
-System.out.println(result); // [1, 2, 3, 4]
+class Main {
+    public static void main(String[] args) {
+        java.util.List<Integer> result = java.util.List.of(4, 2, 4, 1, 3, 2).stream()
+            .distinct()
+            .sorted()
+            .toList();
+        System.out.println(result);
+    }
+}
 ```
 
 Without a comparator, `sorted()` uses natural ordering where supported. To sort in a custom order, provide a `Comparator`.
@@ -2594,9 +2892,12 @@ Without a comparator, `sorted()` uses natural ordering where supported. To sort 
 `reduce` combines stream elements into one result.
 
 ```java
-int total = List.of(1, 2, 3, 4).stream()
-    .reduce(0, Integer::sum);
-System.out.println(total); // 10
+class Main {
+    public static void main(String[] args) {
+        int total = java.util.List.of(1, 2, 3, 4).stream().reduce(0, Integer::sum);
+        System.out.println(total);
+    }
+}
 ```
 
 The `0` is the identity for addition. Other reductions need an identity and accumulator suitable for the operation. Use specialized terminal operations like `sum()` on primitive streams where applicable.
@@ -2604,8 +2905,11 @@ The `0` is the identity for addition. Other reductions need an identity and accu
 ## 24.7 `forEach`
 
 ```java
-List<String> names = List.of("Asha", "Ravi");
-names.stream().forEach(System.out::println);
+class Main {
+    public static void main(String[] args) {
+        java.util.List.of("Asha", "Ravi").stream().forEach(System.out::println);
+    }
+}
 ```
 
 `forEach` is a terminal operation. Prefer transformations that return values instead of using side effects to build another collection inside a `forEach` callback.
@@ -2613,13 +2917,15 @@ names.stream().forEach(System.out::println);
 ## 24.8 Combining operations
 
 ```java
-List<Integer> numbers = List.of(10, 15, 20, 25, 30);
-int totalOfLargeValues = numbers.stream()
-    .filter(n -> n >= 20)
-    .map(n -> n * 2)
-    .reduce(0, Integer::sum);
-
-System.out.println(totalOfLargeValues); // 150
+class Main {
+    public static void main(String[] args) {
+        int total = java.util.List.of(10, 15, 20, 25, 30).stream()
+            .filter(n -> n >= 20)
+            .map(n -> n * 2)
+            .reduce(0, Integer::sum);
+        System.out.println(total);
+    }
+}
 ```
 
 Read it in order: keep values at least 20, double them, then sum them.
@@ -2629,24 +2935,19 @@ Read it in order: keep values at least 20, double them, then sum them.
 `collect` accumulates stream elements into a result container or summary.
 
 ```java
-import java.util.List;
-import java.util.stream.Collectors;
-
-List<String> names = List.of("Asha", "Anil", "Ravi");
-String joined = names.stream().collect(Collectors.joining(", "));
-System.out.println(joined); // Asha, Anil, Ravi
+class Main {
+    public static void main(String[] args) {
+        java.util.List<String> names = java.util.List.of("Asha", "Anil", "Ravi");
+        String joined = names.stream().collect(java.util.stream.Collectors.joining(", "));
+        java.util.Map<Integer, java.util.List<String>> byLength =
+            names.stream().collect(java.util.stream.Collectors.groupingBy(String::length));
+        System.out.println(joined);
+        System.out.println(byLength);
+    }
+}
 ```
 
 Grouping example:
-
-```java
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
-Map<Integer, List<String>> byLength = names.stream()
-    .collect(Collectors.groupingBy(String::length));
-```
 
 `collect` and collector utilities are important extensions of the introductory topics, and are used frequently in real applications.
 
@@ -2655,8 +2956,12 @@ Map<Integer, List<String>> byLength = names.stream()
 For numeric pipelines, Java has `IntStream`, `LongStream`, and `DoubleStream`. They provide operations such as `sum`, `average`, `min`, and `max` without requiring every value to be boxed into a wrapper object.
 
 ```java
-int sum = java.util.stream.IntStream.rangeClosed(1, 5).sum();
-System.out.println(sum); // 15
+class Main {
+    public static void main(String[] args) {
+        int sum = java.util.stream.IntStream.rangeClosed(1, 5).sum();
+        System.out.println(sum);
+    }
+}
 ```
 
 ## 24.11 Stream pitfalls
@@ -2676,9 +2981,15 @@ System.out.println(sum); // 15
 `var` lets the compiler infer a local variable's static type from the initializer.
 
 ```java
-var name = "Java";          // String
-var count = 10;              // int
-var employees = new java.util.ArrayList<String>();
+class Main {
+    public static void main(String[] args) {
+        var name = "Java";
+        var count = 10;
+        var employees = new java.util.ArrayList<String>();
+        employees.add(name);
+        System.out.println(name + " " + count + " " + employees);
+    }
+}
 ```
 
 It is not allowed for uninitialized local variables, normal fields, method parameters, or method return types. It does not make a variable dynamically typed.
@@ -2692,27 +3003,27 @@ A **record** is a concise class form intended primarily to model data. The compi
 ```java
 record Point(int x, int y) { }
 
-Point point = new Point(3, 4);
-System.out.println(point.x());
-System.out.println(point); // Point[x=3, y=4]
+record User(String username, int age) {
+    User {
+        if (username == null || username.isBlank())
+            throw new IllegalArgumentException("username is required");
+        if (age < 0) throw new IllegalArgumentException("age cannot be negative");
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        Point point = new Point(3, 4);
+        System.out.println(point.x());
+        System.out.println(point);
+        System.out.println(new User("asha", 22));
+    }
+}
 ```
 
 Notice that record accessors use component names such as `x()`, not conventional `getX()` methods. Records are implicitly final, so they cannot be extended by ordinary classes. Their component fields are final, but a record is only shallowly immutable: a component could itself refer to a mutable object.
 
 Example with validation:
-
-```java
-record User(String username, int age) {
-    User {
-        if (username == null || username.isBlank()) {
-            throw new IllegalArgumentException("username is required");
-        }
-        if (age < 0) {
-            throw new IllegalArgumentException("age cannot be negative");
-        }
-    }
-}
-```
 
 The compact constructor allows validation while the compiler still assigns component fields from the constructor parameters.
 
@@ -2725,6 +3036,13 @@ sealed interface PaymentMethod permits CardPayment, CashPayment { }
 
 final class CardPayment implements PaymentMethod { }
 final class CashPayment implements PaymentMethod { }
+
+class Main {
+    public static void main(String[] args) {
+        PaymentMethod pm = new CardPayment();
+        System.out.println(pm.getClass().getSimpleName());
+    }
+}
 ```
 
 A permitted direct subtype must be declared `final`, `sealed`, or `non-sealed` (depending on the intended extension policy). `final` stops further subclassing; `sealed` restricts the next level; `non-sealed` opens that subtype to further extension.
@@ -2756,13 +3074,18 @@ The playlist's final indexed entry is a JUnit 5 tutorial. JUnit is a testing fra
 Example (assumes JUnit Jupiter is already configured in your project):
 
 ```java
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+class Calculator {
+    int add(int a, int b) { return a + b; }
+}
 
-class CalculatorTest {
-    @Test
-    void addsTwoNumbers() {
-        assertEquals(5, 2 + 3);
+class Main {
+    public static void main(String[] args) {
+        Calculator calc = new Calculator();
+        int expected = 5;
+        int actual = calc.add(2, 3);
+        if (expected != actual) throw new AssertionError(expected + " vs " + actual);
+        System.out.println("JUnit-style assert passed: " + actual);
+        System.out.println("@Test, assertEquals, assertThrows, @BeforeEach");
     }
 }
 ```
@@ -2785,25 +3108,25 @@ A useful test name says what behavior is being tested and under what condition, 
 
 ## 27.1 Quick comparison table
 
-| Confusing pair | Correct distinction |
-|---|---|
-| JDK vs JVM | JDK provides development tools; JVM executes bytecode. |
-| Primitive vs reference | A primitive stores a primitive value; a reference variable refers to an object or can be `null`. |
-| `==` vs `equals` | `==` checks primitive equality or reference identity; `equals` can define logical object equality. |
-| `print` vs `println` | `println` adds a newline. |
-| `while` vs `do-while` | `while` may run zero times; `do-while` runs at least once. |
-| `break` vs `continue` | `break` exits the nearest loop/switch; `continue` skips to the next loop iteration. |
-| Overloading vs overriding | Different parameter lists vs redefining an inherited instance method. |
-| Static vs instance | Static belongs to the class; instance members are associated with an object. |
-| Constructor vs method | Constructor initializes objects and has no return type; a method has a return type or `void`. |
-| Abstract class vs interface | Abstract class can hold instance state and constructors; interface primarily defines a contract and can be implemented alongside other interfaces. |
-| `throw` vs `throws` | `throw` raises an exception; `throws` declares possible propagation. |
-| `ArrayList` vs array | `ArrayList` resizes; an array has fixed length. |
-| `Comparable` vs `Comparator` | Natural ordering in the type vs a separate ordering strategy. |
-| Collection vs Map | `Map` stores key-value associations and does not extend `Collection`. |
-| `StringBuilder` vs `StringBuffer` | Both are mutable; `StringBuffer` synchronizes its methods, while `StringBuilder` does not. |
-| `start()` vs `run()` | `start()` schedules thread execution; direct `run()` is a normal method call. |
-| Intermediate vs terminal stream op | Intermediate operations build a pipeline; a terminal operation consumes it. |
+| Confusing pair                     | Correct distinction                                                                                                                                |
+| ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| JDK vs JVM                         | JDK provides development tools; JVM executes bytecode.                                                                                             |
+| Primitive vs reference             | A primitive stores a primitive value; a reference variable refers to an object or can be `null`.                                                   |
+| `==` vs `equals`                   | `==` checks primitive equality or reference identity; `equals` can define logical object equality.                                                 |
+| `print` vs `println`               | `println` adds a newline.                                                                                                                          |
+| `while` vs `do-while`              | `while` may run zero times; `do-while` runs at least once.                                                                                         |
+| `break` vs `continue`              | `break` exits the nearest loop/switch; `continue` skips to the next loop iteration.                                                                |
+| Overloading vs overriding          | Different parameter lists vs redefining an inherited instance method.                                                                              |
+| Static vs instance                 | Static belongs to the class; instance members are associated with an object.                                                                       |
+| Constructor vs method              | Constructor initializes objects and has no return type; a method has a return type or `void`.                                                      |
+| Abstract class vs interface        | Abstract class can hold instance state and constructors; interface primarily defines a contract and can be implemented alongside other interfaces. |
+| `throw` vs `throws`                | `throw` raises an exception; `throws` declares possible propagation.                                                                               |
+| `ArrayList` vs array               | `ArrayList` resizes; an array has fixed length.                                                                                                    |
+| `Comparable` vs `Comparator`       | Natural ordering in the type vs a separate ordering strategy.                                                                                      |
+| Collection vs Map                  | `Map` stores key-value associations and does not extend `Collection`.                                                                              |
+| `StringBuilder` vs `StringBuffer`  | Both are mutable; `StringBuffer` synchronizes its methods, while `StringBuilder` does not.                                                         |
+| `start()` vs `run()`               | `start()` schedules thread execution; direct `run()` is a normal method call.                                                                      |
+| Intermediate vs terminal stream op | Intermediate operations build a pipeline; a terminal operation consumes it.                                                                        |
 
 ## 27.2 Common coding errors
 
@@ -2856,28 +3179,28 @@ Do not try to memorize every API method on the first pass. Focus first on how ty
 
 The public index associated with this playlist lists the following lesson groups. The mapping below lets you use these notes alongside the video sequence. Some concepts are combined in the notes to reduce repetition.
 
-| Playlist lessons | Indexed topics | Main sections in these notes |
-|---|---|---|
-| 1-8 | Introduction, JDK setup, first code, how Java works, variables, data types, literals, course update | Sections 1-4 |
-| 9-12 | Type conversion, assignment, relational and logical operators, plus arithmetic operators in the course sequence | Sections 4-5 |
-| 13-17 | `if`, `else if`, ternary operator, switch, modern switch | Section 6 |
-| 18-22 | Need for loops, `while`, `do-while`, `for`, choosing a loop | Section 7 |
-| 23-28 | Class and object theory/practical, JDK/JRE/JVM, methods, overloading, stack and heap | Sections 1, 8, 9 |
-| 29-35 | Need for arrays, array creation, multidimensional/jagged/3D arrays, drawbacks, array of objects, enhanced for | Section 10 |
-| 36-38 | String, mutable versus immutable, `StringBuffer` and `StringBuilder` | Section 11 |
-| 39-49 | Static variable/method/block, encapsulation, getters/setters, `this`, constructors, constructor types, `this`/`super`, naming convention, anonymous object | Section 12 |
-| 50-54 | Need for inheritance, inheritance types, multiple inheritance, method overriding | Sections 13 and 17 |
-| 55-56 | Packages and access modifiers | Section 14 |
-| 57-62 | Polymorphism, dynamic method dispatch, `final`, Object methods, upcasting/downcasting, wrapper classes | Sections 15-16 |
-| 63-69 | Abstract keyword, inner/anonymous classes, need for interfaces, interface basics and deeper topics | Sections 17-18 |
-| 70-73 | Enum, enum with `if`/`switch`, enum class, annotations | Section 18 |
-| 74-77 | Functional interfaces, lambda expressions, lambda return values, interface types | Section 19 |
-| 78-86 | Exceptions, try/catch, multiple catch, hierarchy, `throw`, custom exceptions, `throws`, input, try-with-resources | Sections 20-21 |
-| 87-92 | Threads, multiple threads, priority/sleep, Runnable vs Thread, race condition, thread states | Section 22 |
-| 93-97 | Collection API, `ArrayList`, `Set`, `Map`, `Comparator` versus `Comparable` | Section 23 |
-| 98-101 | Need for streams, `forEach`, Stream API, `map`/`filter`/`reduce`/`sorted` | Section 24 |
-| 102-105 | Java update, `var`, sealed classes, record classes | Section 25 |
-| 106 | JUnit 5 tutorial | Section 26 |
+| Playlist lessons | Indexed topics                                                                                                                                             | Main sections in these notes |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- |
+| 1-8              | Introduction, JDK setup, first code, how Java works, variables, data types, literals, course update                                                        | Sections 1-4                 |
+| 9-12             | Type conversion, assignment, relational and logical operators, plus arithmetic operators in the course sequence                                            | Sections 4-5                 |
+| 13-17            | `if`, `else if`, ternary operator, switch, modern switch                                                                                                   | Section 6                    |
+| 18-22            | Need for loops, `while`, `do-while`, `for`, choosing a loop                                                                                                | Section 7                    |
+| 23-28            | Class and object theory/practical, JDK/JRE/JVM, methods, overloading, stack and heap                                                                       | Sections 1, 8, 9             |
+| 29-35            | Need for arrays, array creation, multidimensional/jagged/3D arrays, drawbacks, array of objects, enhanced for                                              | Section 10                   |
+| 36-38            | String, mutable versus immutable, `StringBuffer` and `StringBuilder`                                                                                       | Section 11                   |
+| 39-49            | Static variable/method/block, encapsulation, getters/setters, `this`, constructors, constructor types, `this`/`super`, naming convention, anonymous object | Section 12                   |
+| 50-54            | Need for inheritance, inheritance types, multiple inheritance, method overriding                                                                           | Sections 13 and 17           |
+| 55-56            | Packages and access modifiers                                                                                                                              | Section 14                   |
+| 57-62            | Polymorphism, dynamic method dispatch, `final`, Object methods, upcasting/downcasting, wrapper classes                                                     | Sections 15-16               |
+| 63-69            | Abstract keyword, inner/anonymous classes, need for interfaces, interface basics and deeper topics                                                         | Sections 17-18               |
+| 70-73            | Enum, enum with `if`/`switch`, enum class, annotations                                                                                                     | Section 18                   |
+| 74-77            | Functional interfaces, lambda expressions, lambda return values, interface types                                                                           | Section 19                   |
+| 78-86            | Exceptions, try/catch, multiple catch, hierarchy, `throw`, custom exceptions, `throws`, input, try-with-resources                                          | Sections 20-21               |
+| 87-92            | Threads, multiple threads, priority/sleep, Runnable vs Thread, race condition, thread states                                                               | Section 22                   |
+| 93-97            | Collection API, `ArrayList`, `Set`, `Map`, `Comparator` versus `Comparable`                                                                                | Section 23                   |
+| 98-101           | Need for streams, `forEach`, Stream API, `map`/`filter`/`reduce`/`sorted`                                                                                  | Section 24                   |
+| 102-105          | Java update, `var`, sealed classes, record classes                                                                                                         | Section 25                   |
+| 106              | JUnit 5 tutorial                                                                                                                                           | Section 26                   |
 
 ### Topic note
 
