@@ -905,9 +905,17 @@ class Main {
 
 ```java
 class Main {
-    static int add(int a, int b) { return a + b; }
-    static double add(double a, double b) { return a + b; }
-    static int add(int a, int b, int c) { return a + b + c; }
+    static int add(int a, int b) {
+        return a + b;
+    }
+
+    static double add(double a, double b) {
+        return a + b;
+    }
+
+    static int add(int a, int b, int c) {
+        return a + b + c;
+    }
 
     public static void main(String[] args) {
         System.out.println(add(1, 2));
@@ -1066,9 +1074,11 @@ Index-based loop:
 ```java
 class Main {
     public static void main(String[] args) {
-        int[] values = {10, 20, 30};
-        for (int i = 0; i < values.length; i++) System.out.println(values[i]);
-        for (int value : values) System.out.println("enhanced: " + value);
+        int[] values = { 10, 20, 30 };
+        for (int i = 0; i < values.length; i++)
+            System.out.println(values[i]);
+        for (int value : values)
+            System.out.println("enhanced: " + value);
     }
 }
 ```
@@ -1265,7 +1275,9 @@ class Employee {
     static String company = "Example Ltd";
     String name;
 
-    Employee(String name) { this.name = name; }
+    Employee(String name) {
+        this.name = name;
+    }
 }
 
 class Main {
@@ -1336,10 +1348,13 @@ Keep static initialization simple. Work that can fail or has external side effec
 class BankAccount {
     private double balance;
 
-    public double getBalance() { return balance; }
+    public double getBalance() {
+        return balance;
+    }
 
     public void deposit(double amount) {
-        if (amount <= 0) throw new IllegalArgumentException("Amount must be positive");
+        if (amount <= 0)
+            throw new IllegalArgumentException("Amount must be positive");
         balance += amount;
     }
 }
@@ -1364,7 +1379,9 @@ Clients cannot directly assign `balance`; they must use the class's public behav
 class User {
     private String username;
 
-    public String getUsername() { return username; }
+    public String getUsername() {
+        return username;
+    }
 
     public void setUsername(String username) {
         if (username == null || username.isBlank())
@@ -1393,14 +1410,18 @@ class Rectangle {
     private int width;
     private int height;
 
-    Rectangle(int size) { this(size, size); }
+    Rectangle(int size) {
+        this(size, size);
+    }
 
     Rectangle(int width, int height) {
         this.width = width;
         this.height = height;
     }
 
-    int area() { return width * height; }
+    int area() {
+        return width * height;
+    }
 }
 
 class Main {
@@ -1454,7 +1475,9 @@ class UserProfile {
     String name;
     int age;
 
-    UserProfile(String name) { this(name, 0); }
+    UserProfile(String name) {
+        this(name, 0);
+    }
 
     UserProfile(String name, int age) {
         this.name = name;
@@ -1549,13 +1572,23 @@ Java allows a class to implement multiple interfaces, which provides multiple ty
 ```java
 class Vehicle {
     protected String type = "Vehicle";
-    Vehicle(String type) { this.type = type; }
-    void start() { System.out.println("Vehicle starting"); }
+
+    Vehicle(String type) {
+        this.type = type;
+    }
+
+    void start() {
+        System.out.println("Vehicle starting");
+    }
 }
 
 class Car extends Vehicle {
-    Car() { super("Car"); }
-    @Override void start() {
+    Car() {
+        super("Car");
+    }
+
+    @Override
+    void start() {
         super.start();
         System.out.println("Car ready");
     }
@@ -1576,11 +1609,16 @@ If a constructor does not explicitly chain to a superclass constructor, Java nor
 
 ```java
 class Animal {
-    void sound() { System.out.println("Some sound"); }
+    void sound() {
+        System.out.println("Some sound");
+    }
 }
 
 class Dog extends Animal {
-    @Override void sound() { System.out.println("Woof"); }
+    @Override
+    void sound() {
+        System.out.println("Woof");
+    }
 }
 
 class Main {
@@ -1607,8 +1645,18 @@ Use `@Override` because it lets the compiler detect mistakes in the method signa
 **Polymorphism** means the same interface or superclass reference can work with different concrete object types.
 
 ```java
-class Animal { void sound() { System.out.println("?"); } }
-class Dog extends Animal { @Override void sound() { System.out.println("Woof"); } }
+class Animal {
+    void sound() {
+        System.out.println("?");
+    }
+}
+
+class Dog extends Animal {
+    @Override
+    void sound() {
+        System.out.println("Woof");
+    }
+}
 
 class Main {
     public static void main(String[] args) {
@@ -1625,9 +1673,25 @@ The reference type controls which members the compiler allows you to access. The
 For an overridden instance method, Java chooses the implementation based on the runtime class of the object, not merely the reference variable's declared type.
 
 ```java
-class Shape { void draw() { System.out.println("Shape"); } }
-class Circle extends Shape { @Override void draw() { System.out.println("Circle"); } }
-class Square extends Shape { @Override void draw() { System.out.println("Square"); } }
+class Shape {
+    void draw() {
+        System.out.println("Shape");
+    }
+}
+
+class Circle extends Shape {
+    @Override
+    void draw() {
+        System.out.println("Circle");
+    }
+}
+
+class Square extends Shape {
+    @Override
+    void draw() {
+        System.out.println("Square");
+    }
+}
 
 class Main {
     public static void main(String[] args) {
@@ -1650,10 +1714,12 @@ This is the foundation of many extensible designs: code can operate on a `Shape`
 - **Final class:** cannot be subclassed.
 
 ```java
-final class Utility { }
+final class Utility {}
 
 class Parent {
-    final void cannotOverride() { System.out.println("final method"); }
+    final void cannotOverride() {
+        System.out.println("final method");
+    }
 }
 
 class Main {
@@ -1723,8 +1789,17 @@ This section consolidates several related concepts because they are easiest to u
 
 ```java
 class Animal {
-    void sound() { System.out.println("Animal"); } }
-class Dog extends Animal { @Override void sound() { System.out.println("Woof"); } }
+    void sound() {
+        System.out.println("Animal");
+    }
+}
+
+class Dog extends Animal {
+    @Override
+    void sound() {
+        System.out.println("Woof");
+    }
+}
 
 class Main {
     public static void main(String[] args) {
@@ -1742,8 +1817,13 @@ Through `animal`, you can access only members exposed by the compile-time type `
 **Downcasting** casts a superclass reference to a subclass type. It is only valid when the referenced object really has the target type (or a compatible subtype).
 
 ```java
-class Animal { }
-class Dog extends Animal { void bark() { System.out.println("bark"); } }
+class Animal {}
+
+class Dog extends Animal {
+    void bark() {
+        System.out.println("bark");
+    }
+}
 
 class Main {
     public static void main(String[] args) {
@@ -1787,15 +1867,24 @@ class PersonKey {
         this.id = id;
     }
 
-    @Override public boolean equals(Object other) {
-        if (this == other) return true;
-        if (!(other instanceof PersonKey that)) return false;
+    @Override
+    public boolean equals(Object other) {
+        if (this == other)
+            return true;
+        if (!(other instanceof PersonKey that))
+            return false;
         return id == that.id && java.util.Objects.equals(name, that.name);
     }
 
-    @Override public int hashCode() { return java.util.Objects.hash(name, id); }
+    @Override
+    public int hashCode() {
+        return java.util.Objects.hash(name, id);
+    }
 
-    @Override public String toString() { return "PersonKey{name='" + name + "', id=" + id + "}"; }
+    @Override
+    public String toString() {
+        return "PersonKey{name='" + name + "', id=" + id + "}";
+    }
 }
 
 class Main {
@@ -1876,13 +1965,23 @@ An abstract class is declared with `abstract` and cannot be instantiated directl
 ```java
 abstract class Shape {
     abstract double area();
-    void describe() { System.out.println("I am a shape"); }
+
+    void describe() {
+        System.out.println("I am a shape");
+    }
 }
 
 class Circle extends Shape {
     private final double radius;
-    Circle(double radius) { this.radius = radius; }
-    @Override double area() { return Math.PI * radius * radius; }
+
+    Circle(double radius) {
+        this.radius = radius;
+    }
+
+    @Override
+    double area() {
+        return Math.PI * radius * radius;
+    }
 }
 
 class Main {
@@ -1907,8 +2006,14 @@ interface Payable {
 
 class Invoice implements Payable {
     private final double amount;
-    Invoice(double amount) { this.amount = amount; }
-    public double amountDue() { return amount; }
+
+    Invoice(double amount) {
+        this.amount = amount;
+    }
+
+    public double amountDue() {
+        return amount;
+    }
 }
 
 class Main {
@@ -1935,12 +2040,22 @@ Choose based on the design, not simply because one feels “more object-oriented
 ## 17.5 Multiple interfaces
 
 ```java
-interface Flyable { void fly(); }
-interface Trackable { String location(); }
+interface Flyable {
+    void fly();
+}
+
+interface Trackable {
+    String location();
+}
 
 class Drone implements Flyable, Trackable {
-    public void fly() { System.out.println("Drone flying"); }
-    public String location() { return "Warehouse"; }
+    public void fly() {
+        System.out.println("Drone flying");
+    }
+
+    public String location() {
+        return "Warehouse";
+    }
 }
 
 class Main {
@@ -1982,7 +2097,9 @@ Common forms:
 ```java
 class Outer {
     static class Nested {
-        void show() { System.out.println("Nested class"); }
+        void show() {
+            System.out.println("Nested class");
+        }
     }
 }
 
@@ -2023,7 +2140,10 @@ An anonymous class is useful for a one-off implementation of an interface or sub
 class Main {
     public static void main(String[] args) {
         Runnable task = new Runnable() {
-            @Override public void run() { System.out.println("Running task"); }
+            @Override
+            public void run() {
+                System.out.println("Running task");
+            }
         };
         task.run();
     }
@@ -2079,9 +2199,16 @@ Example:
 
 ```java
 class Example {
-    @Override public String toString() { return "Example"; }
-    @Deprecated @SuppressWarnings("deprecation")
-    void oldApi() { System.out.println("deprecated"); }
+    @Override
+    public String toString() {
+        return "Example";
+    }
+
+    @Deprecated
+    @SuppressWarnings("deprecation")
+    void oldApi() {
+        System.out.println("deprecated");
+    }
 }
 
 class Main {
@@ -2337,14 +2464,21 @@ Create a custom exception when a domain-specific failure deserves a clear type.
 
 ```java
 class InsufficientFundsException extends Exception {
-    InsufficientFundsException(String message) { super(message); }
+    InsufficientFundsException(String message) {
+        super(message);
+    }
 }
 
 class Wallet {
     private int balance;
-    Wallet(int balance) { this.balance = balance; }
+
+    Wallet(int balance) {
+        this.balance = balance;
+    }
+
     void withdraw(int amount) throws InsufficientFundsException {
-        if (amount > balance) throw new InsufficientFundsException("Not enough balance");
+        if (amount > balance)
+            throw new InsufficientFundsException("Not enough balance");
         balance -= amount;
     }
 }
@@ -2563,17 +2697,25 @@ A **race condition** occurs when the result depends on timing or interleaving of
 ```java
 class Counter {
     int count;
-    void increment() { count++; }
+
+    void increment() {
+        count++;
+    }
 }
 
 class Main {
     public static void main(String[] args) throws InterruptedException {
         Counter counter = new Counter();
-        Runnable task = () -> { for (int i = 0; i < 1000; i++) counter.increment(); };
+        Runnable task = () -> {
+            for (int i = 0; i < 1000; i++)
+                counter.increment();
+        };
         Thread a = new Thread(task);
         Thread b = new Thread(task);
-        a.start(); b.start();
-        a.join(); b.join();
+        a.start();
+        b.start();
+        a.join();
+        b.join();
         System.out.println("Unsafe count (may be < 2000): " + counter.count);
     }
 }
